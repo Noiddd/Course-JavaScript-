@@ -1,4 +1,4 @@
-let js = "amazing";
+/*let js = "amazing";
 if (js === "amazing") alert("Javasript is FUN!");
 console.log(40 + 8 + 23 - 10);
 
@@ -21,3 +21,20 @@ let lasttName = "Ang";
 let age = 30;
 
 console.log(typeof null);
+*/
+const now = 2037;
+const ageJonas = now - 1991;
+const ageSarah = now - 2018;
+console.log(ageJonas, ageSarah);
+
+const firstName = "Dion";
+const lastName = "Ang";
+console.log(firstName + " " + lastName);
+
+//Assignment operator
+let x = 10 + 5;
+x += 10; // 15 + 10 = 25
+console.log(x);
+
+// Comparison operator
+console.log(ageJonas > ageSarah);
