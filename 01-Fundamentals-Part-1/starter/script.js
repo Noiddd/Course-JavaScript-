@@ -296,7 +296,6 @@ if (day === "monday") {
 } else if (day === "wednesday" || "thursday") {
   console.log(`Write code`);
 }
-*/
 
 ////////////////////////////////////
 // Statements and Expressions
@@ -305,3 +304,19 @@ if (day === "monday") {
 // Statement doesn not have to produce a value
 // Statement is like a paragraph and expressions are the words in it
 // javascript expects an expression not a statement in a template literal
+*/
+////////////////////////////////////
+// The Conditional (ternary) Operator
+
+const age = 20;
+age >= 18
+  ? console.log(`I like to drink wine!`)
+  : console.log(`I like to drink water!`);
+
+const drink = age >= 18 ? `Wine` : `Water`;
+console.log(drink);
+
+// You can use a ternary operator in a template literal since it is an expressions
+// It produces a value
+
+console.log(`I like to drink ${age >= 18 ? `Wine` : `Water`}`);
