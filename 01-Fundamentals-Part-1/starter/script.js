@@ -128,7 +128,6 @@ Use the BMI example from Challenge #1, and the code you already wrote, and impro
 HINT: Use an if/else statement 😉
 
 GOOD LUCK 😀
-*/
 
 const massMark = 1;
 const heightMark = 1.69;
@@ -143,3 +142,19 @@ if (markBMI > johnBMI) {
 } else {
   console.log(`Mark's BMI, ${markBMI}, is lower than John's BMI, ${johnBMI}`);
 }
+*/
+
+///////////////////////////////////////
+// Type conversion and Coercion
+// Javascript can only convert to String, Number and Boolean
+
+// Type conversion
+const inputYear = `1991`;
+console.log(Number(inputYear) + 18, inputYear);
+
+console.log(String(23), 23);
+
+// Type coercion
+// The plus operator converts the number to a string
+console.log(`I'am ` + 23 + ` years old`);
+console.log(`23` - `10` - 3);
