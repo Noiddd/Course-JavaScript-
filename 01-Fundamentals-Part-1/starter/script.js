@@ -285,7 +285,6 @@ switch (day) {
   default:
     console.log(`not a valid day`);
 }
-*/
 
 const day = `thursday`;
 
@@ -297,3 +296,12 @@ if (day === "monday") {
 } else if (day === "wednesday" || "thursday") {
   console.log(`Write code`);
 }
+*/
+
+////////////////////////////////////
+// Statements and Expressions
+// An expressions is a piece of code that will produce a value
+// E.g. 3 + 4 or 1991
+// Statement doesn not have to produce a value
+// Statement is like a paragraph and expressions are the words in it
+// javascript expects an expression not a statement in a template literal
