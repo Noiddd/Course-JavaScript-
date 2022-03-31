@@ -159,7 +159,7 @@ console.log(String(23), 23);
 // The minus operator converts strings to numbers
 console.log(`I'am ` + 23 + ` years old`);
 console.log(`23` - `10` - 3); // Prints: 10
-*/
+
 
 ///////////////////////////////////////
 // Truthy and Falsy Values
@@ -186,3 +186,26 @@ if (height) {
 } else {
   console.log(`Height is undefined `);
 }
+*/
+
+///////////////////////////////////////
+// Equality Operators: == vs ===
+// === is a strict equals operator
+// == allows for type coercion
+const age = 18;
+if (age === 18) console.log(`You just became an adult (strict)`);
+if (age == 18) console.log(`You just became an adult(loose)`);
+
+const favourite = Number(prompt("What's your favourite number?"));
+console.log(favourite);
+console.log(typeof favourite);
+
+if (favourite === 23) {
+  console.log(`Cool! 23 is an amazing number`);
+} else if (favourite === 7) {
+  console.log(`7 is also a cool number!`);
+} else {
+  console.log(`Number is not a cool number`);
+}
+
+if (favourite !== 23) console.log(`Number is not 23`);
