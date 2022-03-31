@@ -142,7 +142,7 @@ if (markBMI > johnBMI) {
 } else {
   console.log(`Mark's BMI, ${markBMI}, is lower than John's BMI, ${johnBMI}`);
 }
-*/
+
 
 ///////////////////////////////////////
 // Type conversion and Coercion
@@ -156,5 +156,33 @@ console.log(String(23), 23);
 
 // Type coercion
 // The plus operator converts the number to a string
+// The minus operator converts strings to numbers
 console.log(`I'am ` + 23 + ` years old`);
-console.log(`23` - `10` - 3);
+console.log(`23` - `10` - 3); // Prints: 10
+*/
+
+///////////////////////////////////////
+// Truthy and Falsy Values
+// 5 falsy values: 0, " ", undefined, null, NaN
+// All of these 5 values will be converted to false, when converting to a boolean
+// Everything else will be converted to true
+
+console.log(Boolean(0));
+console.log(Boolean(undefined));
+console.log(Boolean("jonas"));
+console.log(Boolean({})); // Empty object
+console.log(Boolean(""));
+
+const money = 0;
+if (money) {
+  console.log("Dont spend it all");
+} else {
+  console.log("You should get a job!");
+}
+
+let height;
+if (height) {
+  console.log(`YAY height is defined`);
+} else {
+  console.log(`Height is undefined `);
+}
