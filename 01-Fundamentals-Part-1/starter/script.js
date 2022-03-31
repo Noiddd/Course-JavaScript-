@@ -50,7 +50,7 @@ console.log(x, y);
 
 const averageAge = (ageJonas + ageSarah) / 2; // Grouping comes first
 console.log(ageJonas, ageSarah, averageAge);
-*/
+
 // Coding Challenge #1
 
 /*
@@ -64,7 +64,7 @@ TEST DATA 1: Marks weights 78 kg and is 1.69 m tall. John weights 92 kg and is 1
 TEST DATA 2: Marks weights 95 kg and is 1.88 m tall. John weights 85 kg and is 1.76 m tall.
 
 GOOD LUCK 😀
-*/
+
 
 // BMI = mass / height ** 2 = mass / (height * height). (mass in kg and height in meter)
 
@@ -79,3 +79,20 @@ console.log(markBMI, johnBMI);
 
 const markHigherBMI = markBMI > johnBMI;
 console.log(markHigherBMI);
+*/
+
+const firstName = "Jonas";
+const job = "teacher";
+const birthYear = 1991;
+year = 2037;
+
+const jonas =
+  "I'm " + firstName + ", a " + (year - birthYear) + " years old " + job + "!";
+console.log(jonas);
+
+const jonasNew = `I'm ${firstName}, a ${year - birthYear} years old ${job}!`;
+console.log(jonasNew);
+
+console.log(`Hello world
+this is a multi line
+para`);
