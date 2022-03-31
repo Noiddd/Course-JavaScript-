@@ -186,7 +186,6 @@ if (height) {
 } else {
   console.log(`Height is undefined `);
 }
-*/
 
 ///////////////////////////////////////
 // Equality Operators: == vs ===
@@ -209,3 +208,20 @@ if (favourite === 23) {
 }
 
 if (favourite !== 23) console.log(`Number is not 23`);
+*/
+
+///////////////////////////////////////
+// Logical Operator
+
+const hasDriversLicense = true;
+const hasGoodVision = false;
+
+console.log(hasDriversLicense && hasGoodVision); // False
+console.log(hasDriversLicense || hasGoodVision); // True
+console.log(!hasDriversLicense); // false
+
+if (hasDriversLicense && hasGoodVision) {
+  console.log(`Sarah is able to drive!`);
+} else {
+  console.log(`Someone else should drive!`);
+}
