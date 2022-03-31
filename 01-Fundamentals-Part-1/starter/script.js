@@ -243,7 +243,6 @@ TEST DATA BONUS 1: Dolphins score 97, 112 and 101. Koalas score 109, 95 and 123
 TEST DATA BONUS 2: Dolphins score 97, 112 and 101. Koalas score 109, 95 and 106
 
 GOOD LUCK 😀
-*/
 
 const averageDolphins = (1 + 2 + 3) / 3;
 const averageKoalas = (2 + 2 + 2) / 3;
@@ -261,4 +260,40 @@ if (averageDolphins > averageKoalas && averageDolphins >= 100) {
   console.log(`We have a draw!`);
 } else {
   console.log(`No one wins the game!`);
+}
+
+////////////////////////////////////
+// The switch statement
+
+const day = `friday`;
+
+switch (day) {
+  case "monday": // this line means if day === 'monday', then execute code
+    console.log(`Plan course structure`);
+    console.log(`Go to coding bootcamp`);
+    break;
+  case "tuesday":
+    console.log(`Trading`);
+    break;
+  case "wednesday":
+  case "thursday":
+    console.log(`Write code`);
+    break;
+  case "friday":
+    console.log(`work out`);
+    break;
+  default:
+    console.log(`not a valid day`);
+}
+*/
+
+const day = `thursday`;
+
+if (day === "monday") {
+  console.log(`Plan course structure`);
+  console.log(`Go to coding bootcamp`);
+} else if (day === "tuesday") {
+  console.log(`Trading`);
+} else if (day === "wednesday" || "thursday") {
+  console.log(`Write code`);
 }
