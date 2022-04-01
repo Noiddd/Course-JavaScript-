@@ -144,7 +144,7 @@ const checkWinner = function (avgDolphins, avgKoalas) {
 };
 
 checkWinner(scoreDolphins, scoreKoalas);
-*/
+
 //////////////////////////////////////////
 // Introduction to Arrays
 
@@ -181,3 +181,23 @@ const ages = [
   calcAge(years[years.length - 1]),
 ];
 console.log(ages);
+*/
+//////////////////////////////////////////
+// Basic Arary Operations(Methods)
+
+const friends = ["Michael", "Steven", "Peter"];
+const newLength = friends.push(`Jay`); // Use push to add to the back of the array
+console.log(friends);
+console.log(newLength);
+
+friends.unshift("John"); // Use unshift to add to the start of the array
+console.log(friends);
+
+const popped = friends.pop(); // Removes last element of the array and returned that removed element
+console.log(friends);
+console.log(popped);
+
+friends.shift(); // Removes the first element of the array and returned that removed element
+console.log(friends);
+
+console.log(friends.indexOf("Steven"));
