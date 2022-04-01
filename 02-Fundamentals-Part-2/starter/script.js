@@ -19,7 +19,7 @@ console.log(appleJuice);
 
 const appleOrangeJuice = fruitProcessor(2, 4);
 console.log(appleOrangeJuice);
-*/
+
 //////////////////////////////////////////
 // Function Declarations vs Expressions
 
@@ -36,3 +36,27 @@ const calcAge2 = function (birthYear) {
 };
 const age2 = calcAge2(1991);
 console.log(age2);
+*/
+//////////////////////////////////////////
+// Arrow Function
+// A special form of function expression, a faster and shorter way to write
+
+// Function Expression
+const calcAge2 = function (birthYear) {
+  return 2037 - birthYear;
+};
+const age2 = calcAge2(1991);
+console.log(age2);
+
+// Arrow Function
+const calcAge3 = (birthYear) => 2037 - birthYear; // Do not need to write return if is 1 line
+const age3 = calcAge3(1991);
+console.log(age3);
+
+const yearsUntilRetirement = (birthYear, firstName) => {
+  const age = 2037 - birthYear;
+  const retirement = 65 - age;
+  return `${firstName} retires in ${retirement} years`;
+};
+
+console.log(yearsUntilRetirement(1991, "Dion"));
