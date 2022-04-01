@@ -36,7 +36,7 @@ const calcAge2 = function (birthYear) {
 };
 const age2 = calcAge2(1991);
 console.log(age2);
-*/
+
 //////////////////////////////////////////
 // Arrow Function
 // A special form of function expression, a faster and shorter way to write
@@ -60,3 +60,19 @@ const yearsUntilRetirement = (birthYear, firstName) => {
 };
 
 console.log(yearsUntilRetirement(1991, "Dion"));
+*/
+//////////////////////////////////////////
+// Functions Calling Other Functions
+
+function cutFruitPieces(fruit) {
+  return fruit * 4;
+}
+
+function fruitProcessor(apples, oranges) {
+  const applePieces = cutFruitPieces(apples);
+  const orangePieces = cutFruitPieces(oranges);
+  const juice = `Juice with ${applePieces} apples pieces and ${orangePieces} oranges pieces`;
+  return juice;
+}
+
+console.log(fruitProcessor(1, 10));
