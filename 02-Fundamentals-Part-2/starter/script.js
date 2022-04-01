@@ -99,7 +99,7 @@ const yearsUntilRetirement = function (birthYear, firstName) {
 
 console.log(yearsUntilRetirement(1991, "Dion"));
 console.log(yearsUntilRetirement(1950, "John"));
-*/
+
 //////////////////////////////////////////
 // Coding Challenge #1
 
@@ -121,7 +121,7 @@ HINT: To calculate average of 3 values, add them all together and divide by 3
 HINT: To check if number A is at least double number B, check for A >= 2 * B. Apply this to the team's average scores 😉
 
 GOOD LUCK 😀
-*/
+
 
 // A team ONLY wins if it has at least DOUBLE the average score of the other team. Otherwise, no team wins!
 // "Koalas win (30 vs. 13)"
@@ -144,3 +144,40 @@ const checkWinner = function (avgDolphins, avgKoalas) {
 };
 
 checkWinner(scoreDolphins, scoreKoalas);
+*/
+//////////////////////////////////////////
+// Introduction to Arrays
+
+const friend1 = "Michael";
+const friend2 = "Steven";
+const friend3 = "Peter";
+
+const friends = ["Michael", "Steven", "Peter"];
+console.log(friends);
+console.log(friends[0]);
+console.log(friends.length); // Prints: 3
+console.log(friends[friends.length - 1]); // Prints: Peter // The last value in the array
+
+friends[2] = "Jay"; // Replacing Peter in the Array
+console.log(friends);
+
+const firstName = "Dion";
+const dion = [firstName, "Ang", 2037 - 1998, "Trader", friends];
+console.log(dion);
+
+//Exercise
+const calcAge = function (birthYear) {
+  return 2037 - birthYear;
+};
+const years = [1990, 1967, 2002, 2019, 2018];
+const age1 = calcAge(years[0]);
+const age2 = calcAge(years[1]);
+const age3 = calcAge(years[years.length - 1]);
+console.log(age1, age2, age3);
+
+const ages = [
+  calcAge(years[0]),
+  calcAge(years[1]),
+  calcAge(years[years.length - 1]),
+];
+console.log(ages);
