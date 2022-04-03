@@ -235,7 +235,7 @@ console.log(tips);
 
 const total = [bill[0] + tips[0], bill[1] + tips[1], bill[2] + tips[2]];
 console.log(total);
-*/
+
 //////////////////////////////////////////
 // Introduction to Obejcts
 
@@ -249,7 +249,7 @@ const dionArray = [
 ];
 
 // Object
-// Objects are able to have properties, names for values
+// Objects are able to have properties or keys, they are the names for values
 // For example, for the object below, the properties are firstName, lastName, age...
 // Main difference in arrays and objects are that in arrays the order matters but not for objects
 
@@ -260,3 +260,48 @@ const dion = {
   job: "trader",
   friends: ["Michael", "Peter", "Steven"],
 };
+*/
+//////////////////////////////////////////
+// Dot vs Bracket Notation
+const dion = {
+  firstName: "Dion",
+  lastName: "Ang",
+  age: 2037 - 1991,
+  job: "trader",
+  friends: ["Michael", "Peter", "Steven"],
+};
+
+// Dot notation
+console.log(dion.lastName); // Prints: Ang
+console.log(dion["lastName"]); // Prints: Ang
+
+// Bracket notation
+// You will not be able to do this with dot notation
+const nameKey = "Name";
+console.log(dion["first" + nameKey]); // Prints: Dion
+console.log(dion["last" + nameKey]); // Prints: Ang
+
+// An example of using bracket notation
+
+const interestedIn = prompt(
+  "What do you want to know about Dion? Choose between firstName, lastName, age, job and friends"
+);
+
+if (dion[interestedIn]) {
+  console.log(dion[interestedIn]); // Will print undefined if we try to access a property in an object that does not exist
+} else {
+  console.log(
+    // Since undefined is a falsy value will print this instead
+    "Wrong request... Choose between firstName, lastName, age, job and friends"
+  );
+}
+
+// Adding properties into objects
+dion.location = "Singapore";
+dion["twitter"] = "@dionanggg";
+console.log(dion);
+
+// Challenge
+console.log(
+  `${dion.firstName} has ${dion.friends.length} friends, and his best friend is called ${dion.friends[0]}`
+);
