@@ -260,7 +260,7 @@ const dion = {
   job: "trader",
   friends: ["Michael", "Peter", "Steven"],
 };
-*/
+
 //////////////////////////////////////////
 // Dot vs Bracket Notation
 const dion = {
@@ -305,3 +305,40 @@ console.log(dion);
 console.log(
   `${dion.firstName} has ${dion.friends.length} friends, and his best friend is called ${dion.friends[0]}`
 );
+*/
+//////////////////////////////////////////
+// Objects Methods
+// Any function that is attached to an object is called a method
+// The this keyword is equal to the object calling the method
+
+const dion = {
+  firstName: "Dion",
+  lastName: "Ang",
+  birthYear: 1991,
+  job: "trader",
+  friends: ["Michael", "Peter", "Steven"],
+  hasDriversLicense: true,
+
+  // calcAge: function () {
+  //   console.log(this); // Prints the object dion, since dion is the one calling the method
+  //   return 2037 - this.birthYear;
+  // },
+
+  calcAge: function () {
+    this.age = 2037 - this.birthYear;
+    return this.age;
+  },
+
+  getSummary: function () {
+    return `${this.firstName} is a ${this.calcAge()} year old ${
+      this.job
+    }, and he has ${this.hasDriversLicense ? "a" : "no"} driver's license`;
+  },
+};
+
+console.log(dion.calcAge(this.age));
+// console.log(dion["calcAge"](1991));
+
+// Challenge
+// 'Jonas is a 46 year old teacher, and he has a driver license'
+console.log(dion.getSummary());
