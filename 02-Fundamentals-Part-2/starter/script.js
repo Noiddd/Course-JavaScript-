@@ -218,7 +218,7 @@ TEST DATA: 125, 555 and 44
 HINT: Remember that an array needs a value in each position, and that value can actually be the returned value of a function! So you can just call a function as array values (so don't store the tip values in separate variables first, but right in the new array) 😉
 
 GOOD LUCK 😀
-*/
+
 //Tip 15% of the bill if the bill value is between 50 and 300, and if the value is different, the tip is 20%
 
 const calcTip = function (bill) {
@@ -235,3 +235,28 @@ console.log(tips);
 
 const total = [bill[0] + tips[0], bill[1] + tips[1], bill[2] + tips[2]];
 console.log(total);
+*/
+//////////////////////////////////////////
+// Introduction to Obejcts
+
+// Arrays
+const dionArray = [
+  "Dion",
+  "Ang",
+  2037 - 1991,
+  "trader",
+  ["Michael", "Peter", "Steven"],
+];
+
+// Object
+// Objects are able to have properties, names for values
+// For example, for the object below, the properties are firstName, lastName, age...
+// Main difference in arrays and objects are that in arrays the order matters but not for objects
+
+const dion = {
+  firstName: "Dion",
+  lastName: "Ang",
+  age: 2037 - 1991,
+  job: "trader",
+  friends: ["Michael", "Peter", "Steven"],
+};
