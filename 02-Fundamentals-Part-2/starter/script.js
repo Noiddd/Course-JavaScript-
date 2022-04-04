@@ -442,7 +442,7 @@ for (let i = 0; i < dionArray.length; i++) {
   if (typeof dionArray[i] === `number`) break;
   console.log(dionArray[i], typeof dionArray[i]);
 }
-*/
+
 //////////////////////////////////////////
 // Looping Backwards and Loops in Loops
 const dionArray = [
@@ -464,4 +464,31 @@ for (let excercise = 1; excercise < 4; excercise++) {
   for (let rep = 1; rep < 6; rep++) {
     console.log(`REP ${rep}`);
   }
+}
+*/
+//////////////////////////////////////////
+// The while Loop
+
+// for (let rep = 1; rep <= 10; rep++) {
+//   console.log(`REP ${rep}`);
+// }
+
+// while loop version
+// will run while the condition is TRUE
+
+let rep = 1; // counter is outside of while loop code
+
+while (rep <= 10) {
+  // console.log(`WHILE: REP ${rep}`);
+  rep++;
+}
+
+// while loop is used when you do not know how many iterations you need
+// for example, rolling a 6 in a dice
+let dice = Math.trunc(Math.random() * 6) + 1;
+
+while (dice !== 6) {
+  console.log(`You rolled a ${dice}`);
+  dice = Math.trunc(Math.random() * 6) + 1;
+  if (dice === 6) console.log(`You rolled a 6`);
 }
