@@ -383,7 +383,7 @@ john.calcBMI();
 console.log(
   `${mark.fullName}'s BMI(${mark.BMI}) is higher than ${john.fullName}'s (${john.BMI})`
 );
-*/
+
 //////////////////////////////////////////
 // Iteration: The for Loop
 // Loops helps to automate repetitive tasks
@@ -394,4 +394,51 @@ console.log(
 // third part: update the counter after each iteration
 for (let rep = 1; rep <= 10; rep++) {
   console.log(`Lifting weights repetition ${rep}`);
+}
+*/
+//////////////////////////////////////////
+// Looping Arrays: Breaking and Continuing
+const dionArray = [
+  "Dion",
+  "Ang",
+  2037 - 1991,
+  "trader",
+  ["Michael", "Peter", "Steven"],
+  true,
+];
+const types = [];
+
+for (let i = 0; i < dionArray.length; i++) {
+  console.log(dionArray[i], typeof dionArray[i]);
+
+  // Filling an array
+  // types[i] = typeof dionArray[i];
+  types.push(typeof dionArray[i]);
+}
+console.log(types);
+
+const years = [1991, 2007, 1969, 2020];
+const ages = [];
+
+for (let i = 0; i < years.length; i++) {
+  ages.push(2037 - years[i]);
+}
+console.log(ages);
+
+// continue and break
+// continue is to exit the current iteration of the loop and continue to the next one
+// break is to completely terminate the while loop
+
+// continue example
+// only print strings, continue is used to skip any other types
+for (let i = 0; i < dionArray.length; i++) {
+  if (typeof dionArray[i] !== `string`) continue;
+  console.log(dionArray[i], typeof dionArray[i]);
+}
+
+// break example
+// break once a number is found
+for (let i = 0; i < dionArray.length; i++) {
+  if (typeof dionArray[i] === `number`) break;
+  console.log(dionArray[i], typeof dionArray[i]);
 }
