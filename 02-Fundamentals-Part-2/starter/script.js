@@ -395,7 +395,7 @@ console.log(
 for (let rep = 1; rep <= 10; rep++) {
   console.log(`Lifting weights repetition ${rep}`);
 }
-*/
+
 //////////////////////////////////////////
 // Looping Arrays: Breaking and Continuing
 const dionArray = [
@@ -441,4 +441,27 @@ for (let i = 0; i < dionArray.length; i++) {
 for (let i = 0; i < dionArray.length; i++) {
   if (typeof dionArray[i] === `number`) break;
   console.log(dionArray[i], typeof dionArray[i]);
+}
+*/
+//////////////////////////////////////////
+// Looping Backwards and Loops in Loops
+const dionArray = [
+  "Dion",
+  "Ang",
+  2037 - 1991,
+  "trader",
+  ["Michael", "Peter", "Steven"],
+  true,
+];
+
+for (let i = dionArray.length - 1; i >= 0; i--) {
+  console.log(i, dionArray[i]);
+}
+
+// Loop in a Loop
+for (let excercise = 1; excercise < 4; excercise++) {
+  console.log(`----STARTING EXCERCISE ${excercise}----`);
+  for (let rep = 1; rep < 6; rep++) {
+    console.log(`REP ${rep}`);
+  }
 }
