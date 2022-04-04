@@ -355,7 +355,7 @@ Let's go back to Mark and John comparing their BMIs! This time, let's use object
 TEST DATA: Marks weights 78 kg and is 1.69 m tall. John weights 92 kg and is 1.95 m tall.
 
 GOOD LUCK 😀
-*/
+
 
 const mark = {
   fullName: "Mark Miller",
@@ -383,3 +383,15 @@ john.calcBMI();
 console.log(
   `${mark.fullName}'s BMI(${mark.BMI}) is higher than ${john.fullName}'s (${john.BMI})`
 );
+*/
+//////////////////////////////////////////
+// Iteration: The for Loop
+// Loops helps to automate repetitive tasks
+
+// Example: Lifting in the gym
+// first part: initial value of the counter
+// second part: for loop keeps running while condition is TRUE
+// third part: update the counter after each iteration
+for (let rep = 1; rep <= 10; rep++) {
+  console.log(`Lifting weights repetition ${rep}`);
+}
