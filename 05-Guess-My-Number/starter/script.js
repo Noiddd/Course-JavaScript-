@@ -22,6 +22,7 @@ document.querySelector(".guess").value = 23;
 // Project #1: Guess my number!
 let secretNumber = Math.trunc(Math.random() * 20) + 1;
 let score = 20;
+let highscore = 0;
 
 document.querySelector(".number").textContent = "?";
 
@@ -36,6 +37,10 @@ document.querySelector(".check").addEventListener("click", function () {
     document.querySelector("body").style.backgroundColor = "#60b347"; // Selecting the body element, does not require the . infront, since it is not a class. The change will be an inline style, meaning it will be in the html sheet. It does not change the css sheet
     document.querySelector(".number").style.width = "30rem"; // The change will be an inline style, meaning it will be in the html sheet. It does not change the css sheet
     document.querySelector(".number").textContent = secretNumber;
+    if (score > highscore) {
+      highscore = score;
+      document.querySelector(".highscore").textContent = highscore;
+    }
   } else if (guess > secretNumber) {
     if (score > 1) {
       document.querySelector(".message").textContent = "Too high!";
