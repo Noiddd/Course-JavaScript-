@@ -33,6 +33,8 @@ document.querySelector(".check").addEventListener("click", function () {
     document.querySelector(".message").textContent = "No Number!";
   } else if (guess === secretNumber) {
     document.querySelector(".message").textContent = "CORRECT NUMBER!";
+    document.querySelector("body").style.backgroundColor = "#60b347"; // Selecting the body element, does not require the . infront, since it is not a class. The change will be an inline style, meaning it will be in the html sheet. It does not change the css sheet
+    document.querySelector(".number").style.width = "30rem"; // The change will be an inline style, meaning it will be in the html sheet. It does not change the css sheet
   } else if (guess > secretNumber) {
     if (score > 1) {
       document.querySelector(".message").textContent = "Too high!";
