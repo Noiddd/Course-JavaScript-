@@ -40,7 +40,7 @@ const addExpr = function (a, b) {
   return a + b;
 };
 const addArrow = (a, b) => a + b;
-*/
+
 ////////////////////////////////////////
 // The this keyword
 
@@ -74,3 +74,48 @@ const matilda = {
 matilda.calcAge = jonas.calcAge;
 console.log(matilda);
 matilda.calcAge();
+
+////////////////////////////////////////
+// Regular Functions vs Arrow Functions
+const jonas = {
+  firstName: "Jonas",
+  year: 1991,
+  calcAge: function () {
+    console.log(this);
+    console.log(2037 - this.year);
+
+    // Solution 1
+    // const self = this;
+    // const isMillenial = function () {
+    //   console.log(self.year >= 1981 && self.year <= 1996);
+    // };
+    // isMillenial();
+
+    const isMillenial = () => {
+      console.log(this);
+      console.log(this.year >= 1981 && this.year <= 1996);
+    };
+
+    isMillenial();
+  },
+
+  greet: function () {
+    console.log(`Hey ${this.firstName}`);
+  },
+};
+jonas.calcAge();
+*/
+// Arguments keyword
+const addExpr = function (a, b) {
+  console.log(arguments);
+  return a + b;
+};
+addExpr(2, 5);
+addExpr(2, 5, 8, 12);
+
+var addArrow = (a, b) => {
+  console.log(arguments);
+  return a + b;
+};
+
+addArrow(2, 5, 8);
