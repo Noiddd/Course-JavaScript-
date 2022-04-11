@@ -29,7 +29,7 @@ console.log(year);
 var me = "Jonas";
 let job = "teacher";
 const year = 1991;
-*/
+
 console.log(addDecl(2, 3)); // Print: 5
 console.log(addExpr(2, 3)); // Error, since it is a const variable
 
@@ -40,3 +40,37 @@ const addExpr = function (a, b) {
   return a + b;
 };
 const addArrow = (a, b) => a + b;
+*/
+////////////////////////////////////////
+// The this keyword
+
+console.log(this);
+const calcAge = function (birthYear) {
+  console.log(2037 - birthYear);
+  console.log(this);
+};
+
+calcAge(1991);
+
+const calcAgeArrow = (birthYear) => {
+  console.log(2037 - birthYear);
+  console.log(this);
+};
+calcAgeArrow(1980);
+
+const jonas = {
+  year: 1991,
+  calcAge: function () {
+    console.log(this);
+    console.log(2037 - this.year);
+  },
+};
+
+jonas.calcAge();
+
+const matilda = {
+  year: 2017,
+};
+matilda.calcAge = jonas.calcAge;
+console.log(matilda);
+matilda.calcAge();
