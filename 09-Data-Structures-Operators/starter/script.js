@@ -41,6 +41,10 @@ const restaurant = {
       `Order received! ${this.starterMenu[starterIndex]} and ${this.mainMenu[mainIndex]}. Will be delivered to ${address} at ${time} `
     );
   },
+
+  orderPasta: function (ing1, ing2, ing3) {
+    console.log(`Here is the pasta with ${ing1}, ${ing2}, ${ing3}`);
+  },
 };
 
 /*
@@ -83,7 +87,7 @@ console.log(i, j, k);
 
 const [p = 1, q = 1, r = 1] = [8, 9];
 console.log(p, q, r); // r is 1
-*/
+
 //////////////////////////////////////////
 // Destructuring Objects
 const { name, openingHours, categories } = restaurant;
@@ -127,3 +131,55 @@ restaurant.orderDelivery({
   address: "Hougang",
   startIndex: 1,
 });
+*/
+//////////////////////////////////////////
+// The Spread Operator(...)
+
+// Creating a new array
+
+// Bad way
+const arr = [7, 8, 9];
+const badNewArr = [1, 2, arr[0], arr[1], arr[2]];
+console.log(badNewArr); // Prints: [1, 2, 7, 8, 9]
+
+// Good way
+const newArr = [1, 2, ...arr]; //... takes everything out of the array and write them individually
+console.log(newArr); // Prints: [1, 2, 7, 8, 9]
+
+console.log(...newArr); // Prints: 1 2 7 8 9 // Prints them all individually
+console.log(1, 2, 7, 8, 9); // Prints: 1 2 7 8 9
+
+const newMenu = [...restaurant.mainMenu, "Gnocci"]; // Creating a completly new arary, not manipulating original array
+console.log(newMenu);
+
+// Copy array
+const mainMenuCopy = [...restaurant.mainMenu];
+
+// Join 2 array
+const menu = [...restaurant.mainMenu, ...restaurant.starterMenu];
+console.log(menu);
+
+// Iterables: arrays, strings, maps, sets. NOT objects
+// Can only use the spread operator when building an array or passing values into a function
+const str = "Jonas";
+const letters = [...str, "", "S."];
+console.log(letters);
+console.log(...str);
+
+// const ingredients = [
+//   prompt("Let's make pasta! Ingredients 1?"),
+//   prompt("Ingredients 2?"),
+//   prompt("Ingredients 3?"),
+// ];
+// console.log(ingredients);
+
+// restaurant.orderPasta(...ingredients);
+
+//Objects
+const newRestaurant = { foundedIn: 1998, ...restaurant, founder: "Guiseppe" };
+console.log(newRestaurant);
+
+const restaurantCopy = { ...restaurant };
+restaurantCopy.name = "Ristorante Roma";
+console.log(restaurantCopy.name);
+console.log(restaurant.name);
