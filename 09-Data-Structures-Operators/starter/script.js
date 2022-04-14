@@ -187,7 +187,7 @@ const restaurantCopy = { ...restaurant };
 restaurantCopy.name = "Ristorante Roma";
 console.log(restaurantCopy.name);
 console.log(restaurant.name);
-*/
+
 //////////////////////////////////////////
 // Rest Pattern and Parameters
 // Spread is to unpack an array and rest is to pack elements into an array
@@ -225,3 +225,38 @@ add(5, 3, 7, 2);
 
 restaurant.orderPizza("apple", "pear", "onion");
 restaurant.orderPizza("apple");
+*/
+//////////////////////////////////////////
+// Short Circuiting (&& and ||)
+
+// Logical operator can return any data type and use any data type
+// Short circuiting for the || operator means that if the first value is a truthy value, it will immediately return that value
+
+// || operator
+// Immediately return the first truthy value or last value if all are falsy
+console.log(3 || "Dion");
+console.log("" || "Dion"); // Prints: Dion // since "" is a falsy value
+console.log(true || 0); // Prints: true
+console.log(undefined || null); // Prints: null // even tho null is a falsy value since undefined is also a falsy
+console.log(undefined || 0 || "" || "Hello" || 23 || null); // Prints: Hello // sicne it is the first truthy value
+
+// Instead of doing this
+const guest1 = restaurant.numGuest ? restaurant.numGuest : 10;
+console.log(guest1); // Prints: 10
+
+// Do this
+const guest2 = restaurant.numGuest || 10;
+console.log(guest2); // Prints: 10 // Since restaurant.numGuest is undefined
+
+// && operator
+// Immediately return the first falsy value or last value if all are truthy
+console.log(0 && "Dion"); // Prints 0
+console.log(7 && "Dion"); // Prints: Dion // since 7 is a truthy, evaluation continues and returns Dion
+console.log("Hello" && 23 && null && "Dion"); // Prints: null // since it is the first falsey value
+
+// Practical example
+if (restaurant.orderPizza) {
+  restaurant.orderPizza("mushrooms", "spinach");
+}
+
+restaurant.orderPizza && restaurant.orderPizza("mushrooms", "spinach");
