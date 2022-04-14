@@ -225,7 +225,7 @@ add(5, 3, 7, 2);
 
 restaurant.orderPizza("apple", "pear", "onion");
 restaurant.orderPizza("apple");
-*/
+
 //////////////////////////////////////////
 // Short Circuiting (&& and ||)
 
@@ -260,3 +260,15 @@ if (restaurant.orderPizza) {
 }
 
 restaurant.orderPizza && restaurant.orderPizza("mushrooms", "spinach");
+*/
+//////////////////////////////////////////
+// The Nullish Coalescing Operator (??)
+
+restaurant.numGuest = 0;
+const guest = restaurant.numGuest || 10;
+console.log(guest); // Prints: 10 // Even tho we want 0, it prints 10 since 0 is a falsy value
+
+// ?? works with nullish values
+// Nullish: null and undefined (NOT inclding 0 or "")
+const guestCorrect = restaurant.numGuest ?? 10;
+console.log(guestCorrect); // Prints: 0
