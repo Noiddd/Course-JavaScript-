@@ -45,6 +45,10 @@ const restaurant = {
   orderPasta: function (ing1, ing2, ing3) {
     console.log(`Here is the pasta with ${ing1}, ${ing2}, ${ing3}`);
   },
+
+  orderPizza: function (mainIngredient, ...otherIngredients) {
+    console.log(mainIngredient, otherIngredients);
+  },
 };
 
 /*
@@ -131,7 +135,7 @@ restaurant.orderDelivery({
   address: "Hougang",
   startIndex: 1,
 });
-*/
+
 //////////////////////////////////////////
 // The Spread Operator(...)
 
@@ -183,3 +187,41 @@ const restaurantCopy = { ...restaurant };
 restaurantCopy.name = "Ristorante Roma";
 console.log(restaurantCopy.name);
 console.log(restaurant.name);
+*/
+//////////////////////////////////////////
+// Rest Pattern and Parameters
+// Spread is to unpack an array and rest is to pack elements into an array
+
+// Destructuring
+// Spread, because on RIGHT side of =
+const arr = [1, 2, ...[3, 4]];
+
+// Rest, because on LEFT side of =
+const [a, b, ...others] = [1, 2, 3, 4, 5];
+console.log(a, b, others); // the rest operator collects the elements that are unuse in the assignment
+
+const [pizza, , risotto, ...otherFood] = [
+  ...restaurant.mainMenu,
+  ...restaurant.starterMenu,
+];
+
+console.log(pizza, risotto, otherFood); // rest pattern always must be the last, since it takes the REMAINING elements in the array
+
+// Objects
+const { sat, ...weekdays } = restaurant.openingHours;
+console.log(sat, weekdays);
+
+// Functions
+const add = function (...numbers) {
+  // ...numbers packs all the numbers into an array called numbers
+  let sum = 0;
+  for (let i = 0; i < numbers.length; i++) {
+    sum += numbers[i];
+  }
+  console.log(sum);
+};
+
+add(5, 3, 7, 2);
+
+restaurant.orderPizza("apple", "pear", "onion");
+restaurant.orderPizza("apple");
