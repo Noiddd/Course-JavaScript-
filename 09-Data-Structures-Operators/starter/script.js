@@ -486,7 +486,7 @@ BONUS: Create an object called 'scorers' which contains the names of the players
       }
 
 GOOD LUCK 😀
-*/
+
 
 const game = {
   team1: "Bayern Munich",
@@ -563,3 +563,45 @@ for (const player of game.scored) {
   scorers[player] ? scorers[player]++ : (scorers[player] = 1);
 }
 console.log(scorers);
+*/
+/////////////////////////////////////////
+// Sets
+// It is a collection of unique values, it can never have any duplicates
+// Differs from arrays in that the order of the values does not matter and all values are unique
+// No way of retriving values from a Set, since all values are unique, all we can do is to see if value is in the Set
+// If you need to store a value and retrieve it, best use an Array
+
+const ordersSet = new Set([
+  "Pasta",
+  "Pizza",
+  "Pizza",
+  "Risotto",
+  "Pasta",
+  "Pizza",
+]);
+console.log(ordersSet); // Prints: []
+
+console.log(new Set("Jonas"));
+
+console.log(ordersSet.size); // Similar to .length
+console.log(ordersSet.has("Pizza")); // Prints: true // Similar to the .includes
+console.log(ordersSet.has("Bread")); // Prints: false
+ordersSet.add("Garlic Bread");
+ordersSet.add("Garlic Bread");
+ordersSet.delete("Risotto");
+// ordersSet.clear(); // Delete all values of the Set
+console.log(ordersSet);
+
+// Looping is possible since it is an itterable
+for (const order of ordersSet) {
+  console.log(order);
+}
+
+// Main use case for Sets is to remove duplicate values in an Array
+// Example:
+const staff = ["Waiter", "Chef", "Waiter", "Manager", "Chef", "Waiter"];
+
+const staffUnique = [...new Set(staff)]; // Able to spread since a Set is a iterable // unpacking into an Array
+console.log(staffUnique);
+console.log(new Set(staff).size);
+console.log(new Set("didisnasndos").size);
