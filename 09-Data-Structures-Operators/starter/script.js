@@ -563,7 +563,7 @@ for (const player of game.scored) {
   scorers[player] ? scorers[player]++ : (scorers[player] = 1);
 }
 console.log(scorers);
-*/
+
 /////////////////////////////////////////
 // Sets
 // It is a collection of unique values, it can never have any duplicates
@@ -605,3 +605,39 @@ const staffUnique = [...new Set(staff)]; // Able to spread since a Set is a iter
 console.log(staffUnique);
 console.log(new Set(staff).size);
 console.log(new Set("didisnasndos").size);
+*/
+/////////////////////////////////////////
+// Maps: Fundamentals
+// It is a data structure that we can use to map values to keys
+// Key differences between maps and objects are that in maps, the keys can be any type
+// Object keys are always strings, map keys can be anything
+
+const rest = new Map();
+rest.set("name", "Classico Italiano"); // Add elements to map using .set
+rest.set(1, "Firenze, Italy");
+console.log(rest.set(2, "Lisbon, Portugal")); // .set not only update the map, it also returns the updated map
+
+// Since it returns it, we can chain the .set method
+rest
+  .set("categories", ["Italian", "Pizzeria", "Vegetarian", "Organic"])
+  .set("open", 11)
+  .set("close", 23)
+  .set(true, "We are open :D")
+  .set(false, "We are closed :(");
+console.log(rest);
+
+// We read data from the map using the .get method
+
+console.log(rest.get("name")); // Prints: Classico Italiano
+console.log(rest.get(true)); // Prints: We are open :D
+
+const time = 21;
+console.log(rest.get(time > rest.get("open") && time < rest.get("close"))); // Prints: We are open :D
+
+console.log(rest.has("categories")); // Prints: true // Use.has to see if element is in map
+rest.delete(2); // delete elements
+console.log(rest.size);
+//
+const arr = [1, 2];
+rest.set(arr, "Test");
+console.log(rest.get(arr));
