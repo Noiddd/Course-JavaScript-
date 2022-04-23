@@ -641,7 +641,7 @@ console.log(rest.size);
 const arr = [1, 2];
 rest.set(arr, "Test");
 console.log(rest.get(arr));
-*/
+
 /////////////////////////////////////////
 // Maps: Iteration
 // Instead of using .set to add elements into the map, use an array instead
@@ -678,3 +678,95 @@ console.log(question.get(question.get("correct") === answer));
 console.log([...question]);
 console.log([...question.keys()]);
 console.log([...question.values()]);
+*/
+///////////////////////////////////////
+// Coding Challenge #3
+
+/* 
+Let's continue with our football betting app! This time, we have a map with a log of the events that happened during the game. The values are the events themselves, and the keys are the minutes in which each event happened (a football game has 90 minutes plus some extra time).
+
+1. Create an array 'events' of the different game events that happened (no duplicates)
+2. After the game has finished, is was found that the yellow card from minute 64 was unfair. So remove this event from the game events log.
+3. Print the following string to the console: "An event happened, on average, every 9 minutes" (keep in mind that a game has 90 minutes)
+4. Loop over the events and log them to the console, marking whether it's in the first half or second half (after 45 min) of the game, like this:
+      [FIRST HALF] 17: ⚽️ GOAL
+
+GOOD LUCK 😀
+
+
+const gameEvents = new Map([
+  [17, "⚽️ GOAL"],
+  [36, "🔁 Substitution"],
+  [47, "⚽️ GOAL"],
+  [61, "🔁 Substitution"],
+  [64, "🔶 Yellow card"],
+  [69, "🔴 Red card"],
+  [70, "🔁 Substitution"],
+  [72, "🔁 Substitution"],
+  [76, "⚽️ GOAL"],
+  [80, "⚽️ GOAL"],
+  [92, "🔶 Yellow card"],
+]);
+
+// 1. Create an array 'events' of the different game events that happened (no duplicates)
+const events = [...new Set(gameEvents.values())];
+console.log(events);
+ 
+// 2. After the game has finished, is was found that the yellow card from minute 64 was unfair. So remove this event from the game events log.
+gameEvents.delete(64);
+console.log(gameEvents);
+
+// 3. Print the following string to the console: "An event happened, on average, every 9 minutes" (keep in mind that a game has 90 minutes)
+const time = [...gameEvents.keys()].pop();
+console.log(
+  `An event happend, on average, every ${time / gameEvents.size} minutues`
+);
+
+// 4. Loop over the events and log them to the console, marking whether it's in the first half or second half (after 45 min) of the game, like this:
+// [FIRST HALF] 17: ⚽️ GOAL
+for (const [key, value] of gameEvents) {
+  key <= 45
+    ? console.log(`[FIRST HALF] ${key}: ${value}`)
+    : console.log(`[SECOND HALF] ${key}: ${value}`);
+}
+*/
+
+const airline = "TAP Air Portugal";
+const plane = "A320";
+
+console.log(plane[0]);
+console.log(plane[1]);
+console.log("B373"[0]); // Prints: B
+
+console.log("B737".length); // Prints 4
+
+console.log(airline.indexOf("r")); // Prints: 6 // First occurance
+console.log(airline.lastIndexOf("r")); // Prints: 10 // Last occurance
+console.log(airline.indexOf("Portugal")); // Prints: 8 // Case sensitive
+
+// .slice()
+// Where it starts to slice based on index, it is zero based
+// Second number is where it ends
+// Returns a new string
+console.log(airline.slice(4)); // Prints: Air Portugal
+console.log(airline.slice(4, 7)); // Prints: Air
+
+console.log(airline.slice(0, airline.indexOf(" "))); // Prints: TAP
+console.log(airline.slice(airline.lastIndexOf(" ") + 1)); // Prints: Portugal
+
+console.log(airline.slice(-2)); // Prints al
+console.log(airline.slice(1, -1)); // Prints: AP Air Portuga
+
+const checkMiddleSeat = function (seat) {
+  // B and E are middle seats
+  const s = seat.slice(-1);
+  if (s === "B" || s === "E") {
+    console.log("You got the middle seats boohoo");
+  } else {
+    console.log("You got real lucky hehe");
+  }
+};
+
+checkMiddleSeat("11B");
+checkMiddleSeat("23C");
+checkMiddleSeat("3E");
