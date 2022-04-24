@@ -770,7 +770,7 @@ const checkMiddleSeat = function (seat) {
 checkMiddleSeat("11B");
 checkMiddleSeat("23C");
 checkMiddleSeat("3E");
-*/
+
 ///////////////////////////////////////
 // Working with strings - Part 2
 
@@ -836,3 +836,53 @@ const checkBaggage = function (items) {
 checkBaggage("I have a laptop, some Food and a pocket Knife");
 checkBaggage("Socks and camera");
 checkBaggage("Got some snacks and a gun for protection");
+*/
+///////////////////////////////////////
+// Working with Strings - Part 3
+// .split('x') and .join(' ')
+// It splits a string by x and stores them in an array
+
+console.log("a+very+nice+string".split("+")); // Prints: ['a', 'very', 'nice', 'string']
+console.log("Jonas Schmedtmann".split(" ")); // Prints: ['Jonas', 'Schmedtmann']
+
+const [firstName, lastName] = "Jonas Schmedtmann".split(" ");
+
+const newName = ["Mr.", firstName, lastName.toUpperCase()].join(" ");
+console.log(newName);
+
+const capitalizeName = function (name) {
+  const names = name.split(" ");
+  const namesUpper = [];
+
+  for (const n of names) {
+    // namesUpper.push(n[0].toUpperCase() + n.slice(1));
+    namesUpper.push(n.replace(n[0], n[0].toUpperCase()));
+  }
+
+  console.log(namesUpper.join(" "));
+};
+
+capitalizeName("jessica ann smith davis");
+capitalizeName("jonas schemedtmann");
+
+// Padding
+const message = "Go to gate 23!";
+console.log(message.padStart(25, "+").padEnd(35, "+")); // Prints: +++++++++++Go to gate 23!++++++++++ // length of string should be 35
+console.log("Jonas".padStart(25, "+")); // Prints: ++++++++++++++++++++Jonas
+
+const maskCreditCard = function (number) {
+  const str = number + ""; // converting to string, if 1 of the values of the + sign is a string it will return a string
+  const last = str.slice(-4);
+  return last.padStart(str.length, "*");
+};
+
+console.log(maskCreditCard(325324231412432)); // Prints: ***********2432
+
+// Repeat
+const message2 = "Bad weather... All Departues Delayed... ";
+console.log(message2.repeat(5));
+
+const plancesInLine = function (n) {
+  console.log(`There are ${n} planes in line ${":D".repeat(n)}`);
+};
+plancesInLine(5);
