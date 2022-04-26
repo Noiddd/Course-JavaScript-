@@ -107,7 +107,7 @@ const greetingArrow = (greeting) => (name) =>
   console.log(`${greeting} ${name}`);
 
 greetingArrow("Ni hao")("Jon");
-*/
+
 /////////////////////////////////////////////////////////////////////
 // The call and apply Methods
 // Used these to specify the this key word
@@ -164,3 +164,73 @@ console.log(swiss);
 
 // Much simplier way of using .apply
 book.call(swiss, ...flightData);
+*/
+/////////////////////////////////////////////////////////////////////
+// The bind Method
+// Also allow to manually set the this kayword for any function call
+// Difference is that bind does not immediately call the function, instead it returns a new function where the this keyword is bound
+// It is set to whatever value we pass into bind
+
+const lufthansa = {
+  airline: "Lufthansa",
+  iataCode: "LH",
+  bookings: [],
+  book(flightNum, name) {
+    console.log(
+      `${name} booked a seat on ${this.airline} flight ${this.iataCode}${flightNum}`
+    );
+    this.bookings.push({ flights: `${this.iataCode}${flightNum}`, name });
+  },
+};
+
+const book = lufthansa.book;
+
+const eurowings = {
+  airline: "Eurowings",
+  iataCode: "EW",
+  bookings: [],
+};
+
+const bookEW = book.bind(eurowings); // bind the this keyword to eurowings and saved it into BookEW to be used later
+const bookLH = book.bind(lufthansa);
+bookEW(23, "Steven Williams");
+
+// Partial application
+// It means that part of the arguments of the original function are already set
+const bookEW23 = book.bind(eurowings, 23); // able to bind arguments of the function as well
+bookEW23("Dion");
+
+// With Event Listeners
+lufthansa.planes = 300;
+lufthansa.buyPlanes = function () {
+  console.log(this);
+
+  this.planes++;
+  console.log(this.planes);
+};
+
+document
+  .querySelector(".buy")
+  .addEventListener("click", lufthansa.buyPlanes.bind(lufthansa)); // withour the .bind method the this keyword points to the button
+
+// Partial Application
+const addTax = (rate, value) => value + value * rate;
+console.log(addTax(0.1, 200));
+
+// first argument is the this keyword, since there is no this key word, null is used
+// setting the rate value to 0.23
+// It create a more specific function, addVAT, from a more general function, addTax
+const addVAT = addTax.bind(null, 0.23); // addVAT = value => value + value * 0.23;
+
+console.log(addVAT(100));
+console.log(addVAT(23));
+
+const addTaxRate = function (rate) {
+  return function (value) {
+    return value + value * rate;
+  };
+};
+
+const addVAT2 = addTaxRate(0.23);
+console.log(addVAT2(100));
+console.log(addVAT2(23));
