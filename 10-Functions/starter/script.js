@@ -88,7 +88,7 @@ const hello = function (name) {
 document.body.addEventListener("click", hello);
 
 ["dion", "jon", "edward"].forEach(hello);
-*/
+
 /////////////////////////////////////////////////////////////////////
 // Functions Returning Functions
 
@@ -107,3 +107,60 @@ const greetingArrow = (greeting) => (name) =>
   console.log(`${greeting} ${name}`);
 
 greetingArrow("Ni hao")("Jon");
+*/
+/////////////////////////////////////////////////////////////////////
+// The call and apply Methods
+// Used these to specify the this key word
+
+const lufthansa = {
+  airline: "Lufthansa",
+  iataCode: "LH",
+  bookings: [],
+  book(flightNum, name) {
+    console.log(
+      `${name} booked a seat on ${this.airline} flight ${this.iataCode}${flightNum}`
+    );
+    this.bookings.push({ flights: `${this.iataCode}${flightNum}`, name });
+  },
+};
+
+lufthansa.book(239, "Dion Ang");
+lufthansa.book(635, "John Smith");
+console.log(lufthansa);
+
+const eurowings = {
+  airline: "Eurowings",
+  iataCode: "EW",
+  bookings: [],
+};
+
+const book = lufthansa.book;
+
+// Does not work
+// book(23, "Sarah Williams");
+
+// .call
+// .call sets the this keyword to eurowings, whatever the first argument of the call method is
+book.call(eurowings, 23, "Sarah Williams");
+console.log(eurowings);
+
+book.call(lufthansa, 239, "Mary Cooper");
+
+const swiss = {
+  airline: "Swiss Airlines",
+  iataCode: "LX",
+  bookings: [],
+};
+
+book.call(swiss, 583, "Mary Cooper");
+console.log(swiss);
+
+// .apply (Not the most modern way)
+// Difference between .call and .apply is that .apply does not recieve a list of arguments after the first argument
+// Instead it takes in an array
+const flightData = [583, "George Cooper"];
+book.apply(swiss, flightData);
+console.log(swiss);
+
+// Much simplier way of using .apply
+book.call(swiss, ...flightData);
