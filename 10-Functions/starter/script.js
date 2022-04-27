@@ -332,7 +332,7 @@ runOnce();
 }
 // console.log(isPrivate);
 console.log(notPrivate); // Print 23
-*/
+
 /////////////////////////////////////////////////////////////////////
 // Closures
 // A closure makes a function remembers all the variable that existed in the function birth place
@@ -363,3 +363,50 @@ booker(); //Prints: 2 passengers
 booker(); //Prints: 3 passengers
 
 console.dir(booker);
+*/
+/////////////////////////////////////////////////////////////////////
+// More Closure Examples
+
+// Example 1
+// Even tho f is outside, in the global scope
+// It has access to a, which is inside the function
+let f;
+const g = function () {
+  const a = 23;
+
+  f = function () {
+    console.log(a * 2);
+  };
+};
+
+const h = function () {
+  const b = 777;
+
+  f = function () {
+    console.log(b * 2);
+  };
+};
+
+g();
+f(); // Prints: 46
+console.dir(f);
+
+// Re-assigning f function
+h();
+f(); // Prints: 1554
+console.dir(f);
+
+// Example 2
+const boardPassengers = function (n, wait) {
+  const perGroup = n / 3;
+
+  setTimeout(function () {
+    console.log(`We are now boarding all ${n} passengers`);
+
+    console.log(`There are 3 groups, each with ${perGroup} passengers`);
+  }, wait * 1000);
+
+  console.log(`Will start boarding in ${wait} seconds`);
+};
+
+boardPassengers(180, 3);
