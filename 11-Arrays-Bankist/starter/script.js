@@ -61,6 +61,27 @@ const inputLoanAmount = document.querySelector(".form__input--loan-amount");
 const inputCloseUsername = document.querySelector(".form__input--user");
 const inputClosePin = document.querySelector(".form__input--pin");
 
+const displayMovements = function (movements) {
+  // clearing all previous HTML in the movement tab
+  containerMovements.innerHTML = "";
+
+  movements.forEach(function (mov, i) {
+    const type = mov > 0 ? "deposit" : "withdrawal";
+
+    // creating the html text
+    const html = `
+    <div class="movements__row">
+      <div class="movements__type
+      movements__type--${type}">${i + 1} ${type}</div>
+      <div class="movements__value">${mov}</div>
+    </div>`;
+
+    // inserting into the html
+    containerMovements.insertAdjacentHTML("afterbegin", html);
+  });
+};
+displayMovements(account1.movements);
+
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
@@ -155,7 +176,7 @@ movements.forEach(function (movement, index, array) {
     console.log(`Movement ${i + 1}: You withdrew ${Math.abs(movement)}`);
   }
 });
-*/
+
 /////////////////////////////////////////////////
 // forEach() with Maps and Sets
 
@@ -179,3 +200,6 @@ console.log(currenciesUnique);
 currenciesUnique.forEach(function (value, _, map) {
   console.log(`${value}: ${value}`);
 });
+*/
+/////////////////////////////////////////////////
+// PROJECT: "Bankist" App
