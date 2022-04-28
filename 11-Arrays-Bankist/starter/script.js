@@ -82,6 +82,18 @@ const displayMovements = function (movements) {
 };
 displayMovements(account1.movements);
 
+const createUsernames = function (accs) {
+  accs.forEach(function (acc) {
+    acc.username = acc.owner
+      .toLowerCase()
+      .split(" ")
+      .map((name) => name[0])
+      .join("");
+  });
+};
+
+console.log(createUsernames(accounts));
+console.log(accounts);
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
@@ -257,7 +269,6 @@ checkDogs([3, 5, 2, 12, 7], [4, 1, 15, 8, 3]);
 // .reduce
 // it reduces all array elements down to one single value (e.g. adding all elements together)
 
-*/
 /////////////////////////////////////////////////
 // .map Method
 // returns a new array with new elements
@@ -282,7 +293,8 @@ for (const mov of movements) {
 console.log(movementsUSDfor);
 
 const movementsDescriptions = movements.map(
-  (mov, i, arr) =>
+  (mov, i) =>
+
     // if (movement > 0) {
     //   return `Movement ${i + 1}: You deposited ${mov}`;
     // } else {
@@ -295,3 +307,6 @@ const movementsDescriptions = movements.map(
 );
 
 console.log(movementsDescriptions);
+*/
+/////////////////////////////////////////////////
+// Computing Username
