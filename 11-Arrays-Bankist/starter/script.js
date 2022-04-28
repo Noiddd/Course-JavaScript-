@@ -82,6 +82,14 @@ const displayMovements = function (movements) {
 };
 displayMovements(account1.movements);
 
+const calcDisplayBalance = function (movements) {
+  const balance = movements.reduce((acc, mov) => acc + mov, 0);
+
+  labelBalance.textContent = `${balance} EUR`;
+};
+
+calcDisplayBalance(account1.movements);
+
 const createUsernames = function (accs) {
   accs.forEach(function (acc) {
     acc.username = acc.owner
@@ -92,8 +100,8 @@ const createUsernames = function (accs) {
   });
 };
 
-console.log(createUsernames(accounts));
-console.log(accounts);
+createUsernames(accounts);
+
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
@@ -331,3 +339,30 @@ const withdrawals = movements.filter(function (mov) {
 console.log(withdrawals);
 */
 /////////////////////////////////////////////////
+// .reduce method
+// reducing the array into 1 single values
+
+const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+
+// Accumulator is like a snowball
+// last digit at the back specifies the initial value of the acc
+const balance = movements.reduce(function (acc, curr, i) {
+  // With return, it allows the next loop to use the updated acc value
+  console.log(`Iteration ${i}:${acc}`);
+
+  return acc + curr;
+}, 0);
+
+console.log(balance);
+
+let balance2 = 0;
+for (const mov of movements) balance2 += mov;
+console.log(balance2);
+
+// Maximum value
+const max = movements.reduce(
+  (acc, mov) => (acc > mov ? acc : mov),
+  movements[0]
+);
+
+console.log(max);
