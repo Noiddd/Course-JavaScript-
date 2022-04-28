@@ -200,7 +200,7 @@ console.log(currenciesUnique);
 currenciesUnique.forEach(function (value, _, map) {
   console.log(`${value}: ${value}`);
 });
-*/
+
 /////////////////////////////////////////////////
 // Coding Challenge 1
 /* 
@@ -220,7 +220,7 @@ TEST DATA 1: Julia's data [3, 5, 2, 12, 7], Kate's data [4, 1, 15, 8, 3]
 TEST DATA 2: Julia's data [9, 16, 6, 8, 3], Kate's data [10, 5, 6, 1, 4]
 
 GOOD LUCK 😀
-*/
+
 
 // adult if it is at least 3 years old
 // puppy if its less than 3 years old
@@ -242,3 +242,56 @@ const checkDogs = function (dogsJulia, dogsKate) {
 };
 
 checkDogs([3, 5, 2, 12, 7], [4, 1, 15, 8, 3]);
+
+/////////////////////////////////////////////////
+// Data Transformation: map, filter, reduce
+
+// .map
+// similar to the forEach method, it loops over an array
+// difference is that it returns a new array containing the results of applying an operation on all original array element
+
+// .filter
+// used to filter elements in the original array when it satisfy a condition
+// it returns a new array containing tha array elements that passed a specified test condition
+
+// .reduce
+// it reduces all array elements down to one single value (e.g. adding all elements together)
+
+*/
+/////////////////////////////////////////////////
+// .map Method
+// returns a new array with new elements
+
+const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+const eurToUSd = 1.1;
+
+// const movementsUSD = movements.map(function(mov){
+//  return mov * eurToUSd
+// })
+
+// arrow
+const movementsUSD = movements.map((mov) => mov * eurToUSd);
+
+console.log(movements);
+console.log(movementsUSD);
+
+const movementsUSDfor = [];
+for (const mov of movements) {
+  movementsUSDfor.push(mov * eurToUSd);
+}
+console.log(movementsUSDfor);
+
+const movementsDescriptions = movements.map(
+  (mov, i, arr) =>
+    // if (movement > 0) {
+    //   return `Movement ${i + 1}: You deposited ${mov}`;
+    // } else {
+    //   return `Movement ${i + 1}: You withdrew ${Math.abs(mov)}`;
+    // }
+
+    `Movements ${i + 1}: You deposited ${
+      mov > 0 ? "deposited" : "withdrew"
+    }${Math.abs(mov)}`
+);
+
+console.log(movementsDescriptions);
