@@ -185,6 +185,25 @@ btnTransfer.addEventListener("click", function (e) {
   }
 });
 
+btnLoan.addEventListener("click", function (e) {
+  e.preventDefault();
+
+  const amount = Number(inputLoanAmount.value);
+
+  if (
+    amount > 0 &&
+    currentAccount.movements.some((mov) => mov >= amount * 0.1)
+  ) {
+    // Add movement
+    currentAccount.movements.push(amount);
+
+    // Update UI
+    updateUI(currentAccount);
+  }
+
+  inputLoanAmount.value = "";
+});
+
 btnClose.addEventListener("click", function (e) {
   e.preventDefault();
 
@@ -579,7 +598,31 @@ console.log(firstWithdrawal); // Prints: 200
 // Retriving an object from a array
 const account = accounts.find((acc) => acc.owner === "Jessica Davis");
 console.log(account);
-*/
+
 ///////////////////////////////////////
 // The findIndex Method
 // It works the same way as .find, but it returns the index instead of the element
+
+*/
+///////////////////////////////////////
+// some and every
+const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+console.log(movements);
+
+//checks only on equality
+console.log(movements.includes(-130)); // Prints: true
+
+// check on condition
+const anyDeposits = movements.some((mov) => mov > 0);
+console.log(anyDeposits); // Prints: true // return boolean based on a condition
+
+// .every
+// only returns true if all the element in the array returns true
+
+console.log(account4.movements.every((mov) => mov > 0)); // Prints: true
+
+// Separate callback
+const deposit = (mov) => mov > 0;
+console.log(movements.some(deposit));
+console.log(movements.every(deposit));
+console.log(movements.filter(deposit));
