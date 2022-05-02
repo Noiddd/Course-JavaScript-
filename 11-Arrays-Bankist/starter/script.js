@@ -603,7 +603,6 @@ console.log(account);
 // The findIndex Method
 // It works the same way as .find, but it returns the index instead of the element
 
-*/
 ///////////////////////////////////////
 // some and every
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
@@ -626,3 +625,34 @@ const deposit = (mov) => mov > 0;
 console.log(movements.some(deposit));
 console.log(movements.every(deposit));
 console.log(movements.filter(deposit));
+
+*/
+///////////////////////////////////////
+// .flat()
+// .flat() removes 1 layer of nested arrays and returns a full array with all the elements
+// .flat(2) removes 2 layers of nested arrays
+// .flatMap()
+
+const arr = [[1, 2, 3], [4, 5, 6], 7, 8];
+const arrDeep = [[[1, 2], 3], [4, [5, 6]], 7, 8];
+
+console.log(arr.flat()); // Prints: [1, 2, 3, 4, 5, 6, 7, 8]
+console.log(arrDeep.flat()); // Prints: [[1,2] 3, 4, [5, 6], 7, 8]
+console.log(arrDeep.flat(2)); // Prints: [1, 2, 3, 4, 5, 6, 7, 8]
+
+// Calculating the total balance of the bank from ALL the accounts movements
+
+// const overalBalance = accounts
+//   .map((acc) => acc.movements)
+//   .flat()
+//   .reduce((acc, bal) => acc + bal, 0);
+
+// console.log(overalBalance);
+
+// .flatMap()
+// it combines .flat() and .map()
+// it only removes nested arraies 1 level deep
+const overalBalance = accounts
+  .flatMap((acc) => acc.movements)
+  .reduce((acc, bal) => acc + bal, 0);
+console.log(overalBalance);
