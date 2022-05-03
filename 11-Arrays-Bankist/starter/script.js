@@ -668,7 +668,7 @@ const overalBalance = accounts
   .reduce((acc, bal) => acc + bal, 0);
 console.log(overalBalance);
 
-*/
+
 ///////////////////////////////////////
 // Sorting Arrays
 
@@ -706,3 +706,49 @@ movements.sort((a, b) => {
   if (a < b) return 1;
 });
 console.log(movements); // Prints: [3000, 1300, 450, 200, 70, -130, -400, -650]
+
+*/
+///////////////////////////////////////
+// More Ways of Creating and Filling Arrays
+
+// Creating arrays
+const arr = [1, 2, 3, 4, 5, 6, 7];
+console.log(new Array(1, 2, 3, 4, 5, 6, 7));
+
+// if passing only 1 element in the new Array()
+const x = new Array(7); // creating an array with 7 empty elements
+console.log(x);
+
+// .fill(a, b, c)
+// it fills an array with a starting from index b to c, not including c
+// it mutates the original array
+x.fill(1, 3, 5);
+console.log(x);
+
+arr.fill(23, 4, 6);
+console.log(arr); // Prints: [1, 2, 3, 4, 23, 23, 7]
+
+// Array.from()
+// Used tio create an array from an array-like or iterable object or a node list
+
+const y = Array.from({ length: 7 }, () => 1);
+console.log(y); // Prints: [1, 1, 1, 1, 1, 1, 1]
+
+const z = Array.from({ length: 7 }, (_, i) => i + 1);
+console.log(z); // Prints: [1, 2, 3, 4, 5, 6, 7]
+
+// 100 random dice roll with Array.from()
+const randomDice = Array.from(
+  { length: 100 },
+  () => Math.trunc(Math.random() * 6) + 1
+);
+console.log(randomDice);
+
+labelBalance.addEventListener("click", function () {
+  const movementsUI = Array.from(
+    document.querySelectorAll(".movements__value"), // this is a node list, therefore Array.from() is used to create an Array out of it
+    (el) => Number(el.textContent.replace("€", ""))
+  );
+
+  console.log(movementsUI);
+});
