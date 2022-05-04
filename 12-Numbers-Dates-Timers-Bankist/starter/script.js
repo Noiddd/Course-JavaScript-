@@ -377,3 +377,23 @@ labelBalance.addEventListener("click", function () {
 
 /////////////////////////////////////////////////
 */
+// Numeric Separators
+
+// 287,460,000,000
+// _ is used for better readability
+// _ is used instead of .
+// _ can only be placed inbetween numbers
+const diameter = 28_745_000_000_000;
+console.log(diameter); // Prints: 28745000000000
+
+const priceCents = 345_99;
+console.log(priceCents); // Prints: 34599
+
+const transferFee1 = 15_00;
+const transferFee2 = 1_500;
+
+const PI = 3.1415;
+console.log(PI);
+
+console.log(Number("23_000"));
+console.log(parseInt("230_000"));
