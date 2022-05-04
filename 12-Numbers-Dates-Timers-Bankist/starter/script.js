@@ -302,7 +302,7 @@ console.log(Number.isInteger(+"20X")); // Prints: false
 console.log(Number.isInteger(20 / 0)); // Prints: false // it returns infinity
 
 /////////////////////////////////////////////////
-*/
+
 // Math and Rounding
 
 console.log(Math.sqrt(25)); // Prints: 5 // squareroot
@@ -346,3 +346,34 @@ console.log((2.7).toFixed(0)); // Prints 3 // .toFixed() returns a string
 console.log((2.7).toFixed(3)); // Prints 2.700
 console.log((2.345).toFixed(2)); // Prints 2.35
 console.log(+(2.345).toFixed(2)); // Prints 2.35 // returns a number, since + is added infront
+
+/////////////////////////////////////////////////
+
+// The Remainder Operator
+
+// it returns the remainder of the division
+console.log(5 % 2); // Print: 1
+console.log(8 % 3); // Prints: 2
+
+// Checking if value is even or odd
+// when divided 2 and return 0, value is even since there is not remainder
+console.log(6 % 2); // Prints:0
+console.log(7 % 2); // Prints 1
+
+const isEven = (n) => n % 2 === 0;
+console.log(isEven(8)); // Prints: true
+console.log(isEven(23)); // Prints: false
+console.log(isEven(514)); // Prints: true
+
+labelBalance.addEventListener("click", function () {
+  [...document.querySelectorAll(".movements__row")].forEach(function (row, i) {
+    // even rows
+    if (i % 2 === 0) row.style.backgroundColor = "orangered";
+
+    // 0, 3, 6, 9
+    if (i % 3 === 0) row.style.backgroundColor = "blue";
+  });
+});
+
+/////////////////////////////////////////////////
+*/
