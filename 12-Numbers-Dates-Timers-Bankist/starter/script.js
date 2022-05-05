@@ -399,7 +399,7 @@ console.log(Number("23_000"));
 console.log(parseInt("230_000"));
 
 /////////////////////////////////////////////////
-*/
+
 // Working with BigInt
 
 // Numbers are represented internally as 64 bits
@@ -425,3 +425,49 @@ console.log(huge * BigInt(num)); // it shows an error without the BigInt
 
 // Exceptions
 console.log(20n > 15); // Prints: true // this works
+
+/////////////////////////////////////////////////
+
+// Creating Dates
+
+// 4 ways of creating a date
+const now = new Date();
+console.log(now); // Prints: Thu May 05 2022 10:08:20 GMT+0800 (Singapore Standard Time) // current date and time
+
+console.log(new Date("May 05 2022 10:07:19")); // Prints: Thu May 05 2022 10:07:19 GMT+0800 (Singapore Standard Time)
+console.log(new Date("December 24, 2015")); // Prints: Thu Dec 24 2015 00:00:00 GMT+0800 (Singapore Standard Time)
+
+// "2019-11-18T21:31:17.178Z",
+// this format is ok since it was JS that created it
+console.log(new Date(account1.movementsDates[0])); // Prints: Tue Nov 19 2019 05:31:17 GMT+0800 (Singapore Standard Time)
+
+// the month is zero based, 10 is november
+console.log(new Date(2037, 10, 19, 15, 23, 5)); // Prints: Thu Nov 19 2037 15:23:05 GMT+0800 (Singapore Standard Time)
+
+// JS auto corrects the dates
+console.log(new Date(2037, 10, 31)); // Prints: Tue Dec 01 2037 00:00:00 GMT+0800 (Singapore Standard Time)
+
+console.log(new Date(0)); // Prints: Thu Jan 01 1970 07:30:00 GMT+0730 (Singapore Standard Time)
+
+// 3 days after the beginning time
+// the sum of the calculation is called the timestamp
+console.log(new Date(3 * 24 * 60 * 60 * 1000)); // Prints: Sun Jan 04 1970 07:30:00 GMT+0730 (Singapore Standard Time)
+*/
+// Working with dates
+const future = new Date(2037, 10, 19, 15, 23);
+console.log(future); // Prints: Thu Nov 19 2037 15:23:00 GMT+0800 (Singapore Standard Time)
+console.log(future.getFullYear()); // Prints: 2037
+console.log(future.getMonth()); // Prints: 10 // month is zero based
+console.log(future.getDate()); // Prints: 19
+console.log(future.getDay()); // Prints: 4 // its the day of the week not the month, 0 is sun
+console.log(future.getHours()); // Prints: 15
+console.log(future.getMinutes()); // Prints: 23
+console.log(future.getSeconds()); // Prints: 0
+console.log(future.toISOString()); // Prints: 2037-11-19T07:23:00.000Z // convert a date object to a string to store somewhere
+console.log(future.getTime()); // Prints: 2142228180000 // timestamp, its the mili second that have passed since jan 1 1970
+
+console.log(new Date(2142228180000)); // Prints: Thu Nov 19 2037 15:23:00 GMT+0800 (Singapore Standard Time)
+console.log(Date.now()); // Prints: 1651717519373 // current timestamp
+
+future.setFullYear(2040); // changing year
+console.log(future); // Prints: Mon Nov 19 2040 15:23:00 GMT+0800 (Singapore Standard Time)
