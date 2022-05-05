@@ -376,7 +376,7 @@ labelBalance.addEventListener("click", function () {
 });
 
 /////////////////////////////////////////////////
-*/
+
 // Numeric Separators
 
 // 287,460,000,000
@@ -397,3 +397,31 @@ console.log(PI);
 
 console.log(Number("23_000"));
 console.log(parseInt("230_000"));
+
+/////////////////////////////////////////////////
+*/
+// Working with BigInt
+
+// Numbers are represented internally as 64 bits
+// That means there are 64 1s or 0s to represent any given number
+// Of these 64, only 53 are used to actually store the digits themselves. The rest are used to store the decimal points and the signs
+// If there are only 53 bits to strore a number, that means there is a limit of how big a number can be
+
+// This is the biggest number Javascript can safely represent
+// Any number larger than this is considered not safe, it cannot be represented accurately
+console.log(2 ** 53 - 1); // Prints: 9007199254740991
+console.log(Number.MAX_SAFE_INTEGER); // Prints: 9007199254740991
+console.log(2 ** 53 + 1); // Prints: 9007199254740992 // Not correct
+
+console.log(4532532412363491273918273491n);
+console.log(BigInt(4532532412363491273918273491));
+
+// Operations
+console.log(10000n + 10000n); // Prints: 20000n
+
+const huge = 232134123712987489124n;
+const num = 23;
+console.log(huge * BigInt(num)); // it shows an error without the BigInt
+
+// Exceptions
+console.log(20n > 15); // Prints: true // this works
