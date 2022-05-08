@@ -30,6 +30,7 @@ document.addEventListener("keydown", function (e) {
   }
 });
 
+/*
 ///////////////////////////////////////
 // Selecting, Creating and Deleting Elements
 
@@ -81,3 +82,71 @@ document
   .addEventListener("click", function () {
     message.remove();
   });
+
+*/
+
+///////////////////////////////////////
+// Styles, Attributes and Classes
+const header = document.querySelector(".header");
+const message = document.createElement("div");
+message.classList.add("cookie-message");
+message.innerHTML =
+  'We use cookies for improved functionality and analytics. <button class="btn btn--close--cookie">Got it!</button>';
+header.append(message);
+header.after(message);
+
+document
+  .querySelector(".btn--close--cookie")
+  .addEventListener("click", function () {
+    message.remove();
+  });
+
+// Styles
+
+// Setting inline styles
+message.style.backgroundColor = "#37383d";
+message.style.width = "120%";
+
+console.log(message.style.color);
+console.log(message.style.backgroundColor);
+
+console.log(getComputedStyle(message).color);
+console.log(getComputedStyle(message).height);
+
+message.style.height =
+  Number.parseFloat(getComputedStyle(message).height, 10) + 30 + "px";
+
+document.documentElement.style.setProperty("--color-primary", "orangered");
+
+// Attributes
+const logo = document.querySelector(".nav__logo");
+console.log(logo.alt);
+console.log(logo.src);
+console.log(logo.className);
+
+logo.alt = "Beautiful minimalist logo"; // Changing properties
+console.log(logo.alt);
+
+console.log(logo.designer); // Prints: undefined // Since it is not a standard property that is expected on images
+console.log(logo.getAttribute("designer"));
+logo.setAttribute("company", "Bankist");
+
+console.log(logo.src); // Absolute version
+console.log(logo.getAttribute("src")); // relative version
+
+const link = document.querySelector(".twitter-link");
+console.log(link.href);
+console.log(link.getAttribute("href"));
+
+// Data attributes
+console.log(logo.dataset.versionNumber);
+
+// Classes
+logo.classList.add("c");
+logo.classList.remove("c");
+logo.classList.toggle("c");
+logo.classList.contains("c"); // contains not includes
+
+// Don't use
+// It overrides all existing classes and allows only 1
+logo.className = "jonas";
