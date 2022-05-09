@@ -83,7 +83,6 @@ document
     message.remove();
   });
 
-*/
 
 ///////////////////////////////////////
 // Styles, Attributes and Classes
@@ -150,3 +149,45 @@ logo.classList.contains("c"); // contains not includes
 // Don't use
 // It overrides all existing classes and allows only 1
 logo.className = "jonas";
+*/
+
+///////////////////////////////////////
+// Implementing Smooth Scrolling
+
+const btnScrollTo = document.querySelector(".btn--scroll-to");
+const section1 = document.querySelector("#section--1");
+
+btnScrollTo.addEventListener("click", function (e) {
+  const s1coords = section1.getBoundingClientRect(); // getBoundingClientReact() is used to get coordinates, relative to the visable viewport
+  console.log(s1coords);
+
+  // console.log(e.target.getBoundingClientRect()); // e.target refers to btnScrollTO
+
+  // console.log("Current scroll (X/Y)", window.pageXOffset, pageYOffset); // It show the px from the visable edge to the browser edge
+
+  // console.log(
+  //   "Height/width viewport:",
+  //   document.documentElement.clientHeight, // shows the visable height
+  //   document.documentElement.clientWidth // shows the visable width
+  // );
+
+  // Scrolling
+
+  // s1coords.top scrolls based on relative viewport, from the top of whats visable to the section.
+  // need to add window.pageYOffset, which is from the visable to the top of the browser
+  // window.scrollTo(
+  //   s1coords.left + window.pageXOffset,
+  //   s1coords.top + window.pageYOffset
+  // );
+
+  // // Old school way
+  // // Implementing Smooth Scrolling
+  // window.scrollTo({
+  //   left: s1coords.left + window.pageXOffset,
+  //   top: s1coords.top + window.pageYOffset,
+  //   behavior: "smooth",
+  // });
+
+  // Modern way
+  section1.scrollIntoView({ behavior: "smooth" });
+});
