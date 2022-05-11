@@ -274,4 +274,41 @@ document.querySelector(".nav").addEventListener("click", function (e) {
 
 */
 ///////////////////////////////////////
-//
+// DOM Traversing
+// Basically walking through the DOM
+// Selecting an element based on another element
+
+const h1 = document.querySelector("h1");
+
+// Going downwards: selecting child
+// queryselector is used to find children no matter how deep in the DOM tree
+console.log(h1.querySelectorAll(".highlight"));
+console.log(h1.childNodes); // Selecting direct children
+console.log(h1.children); // Selecting direct children which are elements
+
+h1.firstElementChild.style.color = "white"; // Selecting and changing color of the first element child
+h1.lastElementChild.style.color = "orangered"; // Selecting and changing color of the last element child
+
+// Going upwards: selecting parents
+console.log(h1.parentNode); // Selecting direct parent
+console.log(h1.parentElement);
+
+// closest is used in selecting the closet parent element that has the header class
+
+h1.closest(".header").style.background = "var(--gradient-secondary)";
+h1.closest("h1").style.background = "var(--gradient-primary)"; // Will select itself
+
+// Going sidewats: siblings
+console.log(h1.previousElementSibling);
+console.log(h1.nextElementSibling);
+
+console.log(h1.previousSibling);
+console.log(h1.nextSibling);
+
+// selecting all siblings
+// Move up to the parent and selecting all the children
+console.log(h1.parentElement.children);
+
+[...h1.parentElement.children].forEach(function (el) {
+  if (el !== h1) el.style.transform = "scale(0.5)";
+});
