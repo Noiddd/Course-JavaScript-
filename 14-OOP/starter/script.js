@@ -29,7 +29,6 @@ const jay = "jay";
 
 console.log(jonas instanceof Person); // Prints: true
 console.log(jay instanceof Person); // Prits : false
-*/
 
 //////////////////////////////////////////////////////////////\
 // Prototypes
@@ -66,3 +65,41 @@ console.log(jonas.__proto__.species); // Prints: Homo Sapiens
 
 console.log(jonas.hasOwnProperty("firstName")); // true
 console.log(jonas.hasOwnProperty("species")); // false
+*/
+
+//////////////////////////////////////////////////////////////
+// Prototypal Inheritance on Built-In Object
+
+const Person = function (firstName, birthYear) {
+  // Instance properties
+  this.firstName = firstName;
+  this.birthYear = birthYear;
+
+  // Never create a method inside of a constructor function
+  //   this.calcAge = function () {
+  //     console.log(2037 - this.birthYear);
+  //   };
+};
+
+Person.prototype.calcAge = function () {
+  console.log(2037 - this.birthYear);
+};
+
+const jonas = new Person("Jonas", 1991);
+jonas.calcAge(); // jonas will have access to calcAge
+
+console.log(jonas.__proto__.__proto__); // Object.prototype (top of the prototype chain)
+console.log(jonas.__proto__.__proto__.__proto__); // Null
+
+console.dir(Person.prototype.constructor);
+
+const arr = [2, 6, 4, 34, 2, 23, 6]; // new Array === []
+console.log(arr.__proto__ === Array.prototype); // true
+
+// Since all arrays inherits the prototype property from Array
+// Adding a new method to the prototype property of the Array constructor will add to all arrays
+Array.prototype.unique = function () {
+  return [...new Set(this)];
+};
+
+console.log(arr.unique()); // Prints: [2, 6, 4, 34, 23]
