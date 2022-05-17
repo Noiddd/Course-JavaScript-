@@ -142,7 +142,6 @@ console.log(bmw, mercedes);
 
 bmw.accelerate();
 bmw.brake();
-
 */
 ///////////////////////////////////////
 // ES6 Classes
@@ -156,8 +155,8 @@ bmw.brake();
 
 // class declaration
 class PersonCl {
-  constructor(firstName, birthYear) {
-    this.firstName = firstName;
+  constructor(fullName, birthYear) {
+    this.fullName = fullName;
     this.birthYear = birthYear;
   }
 
@@ -169,11 +168,25 @@ class PersonCl {
   greet() {
     console.log(`Hey ${this.firstName}`);
   }
+
+  get age() {
+    return 2037 - this.birthYear;
+  }
+
+  set fullName(name) {
+    if (name.includes(" ")) this._fullName = name;
+    else alert(`${name} is not a full name!`);
+  }
+
+  get fullName() {
+    return this._fullName;
+  }
 }
 
-const jessica = new PersonCl("Jessica", 1996);
+const jessica = new PersonCl("Jessica Davis", 1996);
 console.log(jessica);
 jessica.calcAge(); // Prinst: 41
+console.log(jessica.age);
 
 console.log(jessica.__proto__ === PersonCl.prototype); // Prints: true
 
@@ -182,3 +195,28 @@ console.log(jessica.__proto__ === PersonCl.prototype); // Prints: true
 // };
 
 jessica.greet(); // Prints: Hey Jesica
+
+///////////////////////////////////////
+// Setters and Getters
+
+// setters and getters, sets and gets a value
+
+const walter = new PersonCl("Walter", 1965);
+
+const account = {
+  owner: "Jonas",
+  movements: [200, 530, 120, 300],
+
+  get latest() {
+    return this.movements.slice(-1).pop();
+  },
+
+  set latest(mov) {
+    this.movements.push(mov);
+  },
+};
+
+console.log(account.latest);
+
+account.latest = 50;
+console.log(account.movements); //Prints: [200, 530, 120, 300, 50]
