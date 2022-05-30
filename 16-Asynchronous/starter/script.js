@@ -104,9 +104,9 @@ const getCountryData = function (country) {
     .finally(() => (countriesContainer.style.opacity = 1));
 };
 
-btn.addEventListener("click", function () {
-  getCountryData("australia");
-});
+// btn.addEventListener("click", function () {
+//   getCountryData("australia");
+// });
 
 ///////////////////////////////////////
 // Coding Challenge #1
@@ -133,7 +133,7 @@ TEST COORDINATES 2: 19.037, 72.873
 TEST COORDINATES 2: -33.933, 18.474
 
 GOOD LUCK 😀
-*/
+
 
 const whereAmI = function (lat, lng) {
   fetch(`https://geocode.xyz/${lat},${lng}?geoit=json`)
@@ -157,7 +157,7 @@ const whereAmI = function (lat, lng) {
     .catch((err) => console.error(err.message));
 };
 
-/*
+
 // The Event Loop in Practice
 console.log("Test Start"); // 1st
 setTimeout(() => {
@@ -165,7 +165,7 @@ setTimeout(() => {
 }, 0); // 4th
 Promise.resolve("Resolved promise 1").then((res) => console.log(res)); // 3rd
 console.log("Test End"); // 2nd
-*/
+
 
 // Building a Simple Promise
 
@@ -201,3 +201,49 @@ wait(2)
 Promise.resolve("abc").then((x) => console.log(x));
 
 Promise.reject("abc").catch((x) => console.error(x));
+*/
+
+// Promisifying the Geolocation API
+
+const getPosition = function () {
+  return new Promise(function (resolve, reject) {
+    // navigator.geolocation.getCurrentPosition(
+    //   (position) => resolve(position),
+    //   (err) => reject(err)
+    // );
+
+    navigator.geolocation.getCurrentPosition(resolve, reject);
+  });
+};
+
+getPosition().then((pos) => console.log(pos));
+
+const whereAmI = function () {
+  getPosition()
+    .then((pos) => {
+      const { latitude: lat, longitude: lng } = pos.coords;
+
+      return fetch(`https://geocode.xyz/${lat},${lng}?geoit=json`);
+    })
+
+    .then((response) => {
+      console.log(response);
+      if (!response.ok)
+        throw new Error(`Problem with geocoding ${response.status}`);
+      return response.json();
+    })
+    .then((data) => {
+      console.log(`You are in ${data.city}, ${data.country}`);
+
+      return fetch(`https://restcountries.com/v2/name/ ${data.country}`);
+    })
+    .then((response) => {
+      if (!response.ok)
+        throw new Error(`Country not found (${response.status})`);
+      return response.json();
+    })
+    .then((data) => renderCountry(data[0]))
+    .catch((err) => console.error(err.message));
+};
+
+btn.addEventListener("click", whereAmI);
