@@ -146,7 +146,7 @@ const whereAmI = function (lat, lng) {
     .then((data) => {
       console.log(`You are in ${data.city}, ${data.country}`);
 
-      return fetch(`https://restcountries.com/v2/name/${data.country}`);
+      return fetch(`https://restcountries.com/v2/name/ ${data.country}`);
     })
     .then((response) => {
       if (!response.ok)
@@ -157,6 +157,10 @@ const whereAmI = function (lat, lng) {
     .catch((err) => console.error(err.message));
 };
 
-whereAmI(52.508, 13.381);
-whereAmI(19.037, 72.873);
-whereAmI(-33.933, 18.474);
+// The Event Loop in Practice
+console.log("Test Start"); // 1st
+setTimeout(() => {
+  console.log("0 sec timer");
+}, 0); // 4th
+Promise.resolve("Resolved promise 1").then((res) => console.log(res)); // 3rd
+console.log("Test End"); // 2nd
