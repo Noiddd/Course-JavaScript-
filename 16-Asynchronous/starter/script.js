@@ -339,22 +339,31 @@ const getPosition = function () {
 };
 
 const whereAmI = async function () {
-  // Geo location
-  const pos = await getPosition();
-  const { latitude: lat, longitude: lng } = pos.coords;
+  try {
+    // Geo location
+    const pos = await getPosition();
+    const { latitude: lat, longitude: lng } = pos.coords;
 
-  // Reverse geocoding
-  const resGeo = await fetch(`https://geocode.xyz/${lat},${lng}?geoit=json`);
-  const dataGeo = await resGeo.json();
-  console.log(dataGeo);
+    // Reverse geocoding
+    const resGeo = await fetch(`https://geocode.xyz/${lat},${lng}?geoit=json`);
+    if (!resGeo.ok) throw new Error("Problem getting location data");
 
-  // Country Data
-  const res = await fetch(
-    `https://restcountries.com/v2/name/${dataGeo.country}`
-  );
-  const [data] = await res.json();
-  console.log(data);
-  renderCountry(data);
+    const dataGeo = await resGeo.json();
+    console.log(dataGeo);
+
+    // Country Data
+    const res = await fetch(
+      `https://restcountries.com/v2/name/${dataGeo.country}`
+    );
+    if (!res.ok) throw new Error("Problem getting country data");
+
+    const [data] = await res.json();
+    console.log(data);
+    renderCountry(data);
+  } catch (err) {
+    console.error(err);
+    renderError(`${err.message}`);
+  }
 };
 
 whereAmI();
