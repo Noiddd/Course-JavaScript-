@@ -319,7 +319,7 @@ createImage("img/img-1.jpg")
     currentImg.style.display = "none";
   })
   .catch((err) => console.error(err));
-*/
+
 
 // Consuming Promises with Async/Await
 
@@ -368,3 +368,49 @@ const whereAmI = async function () {
 
 whereAmI();
 console.log("FIRST");
+
+
+// Async Example 
+
+function makeRequest(location) {
+  return new Promise((resolve, reject) => {
+    console.log(`Making Request to ${location}`);
+
+    if (location === "Google") {
+      resolve("Google says hi");
+    } else {
+      reject("We can only talk to Google");
+    }
+  });
+}
+
+function processRequest(response) {
+  return new Promise((resolve, reject) => {
+    console.log("Processing response");
+    resolve(`Extra Information + ${response}`);
+  });
+}
+
+// makeRequest("Facebook")
+//   .then((response) => {
+//     console.log(`Response Received`);
+//     return processRequest(response);
+//   })
+//   .then((processedResponse) => {
+//     console.log(processedResponse);
+//   })
+//   .catch((err) => console.error(err));
+
+async function doWork() {
+  try {
+    const response = await makeRequest("facebook");
+    console.log(`Response Received`);
+    const processedResponse = await processRequest(response);
+    console.log(processedResponse);
+  } catch (err) {
+    console.error(err);
+  }
+}
+
+doWork();
+*/
