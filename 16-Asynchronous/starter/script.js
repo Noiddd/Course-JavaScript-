@@ -1,5 +1,5 @@
 "use strict";
-/*
+
 const btn = document.querySelector(".btn-country");
 const countriesContainer = document.querySelector(".countries");
 
@@ -170,10 +170,10 @@ console.log("Test End"); // 2nd
 // Building a Simple Promise
 
 const lotteryPromise = new Promise(function (resolve, reject) {
-  console.log("Lottery draw is happing...");
+  console.log("Lottery draw is happening...");
   setTimeout(() => {
     if (Math.random() >= 0.5) {
-      resolve("You WIN!!!");
+      resolve("YOU WIN");
     } else {
       reject(new Error("You lost your money..."));
     }
@@ -196,13 +196,12 @@ wait(2)
     console.log("I waited for 2 seconds");
     return wait(1);
   })
-  .then(() => console.log("I waited for 1 second"));
+  .then(() => console.log("I waited for another 1 second"));
 
-Promise.resolve("abc").then((x) => console.log(x));
+Promise.resolve("abc").then((x) => console.log(x)); // Resolve immediately
+Promise.reject(new Error("cde")).catch((x) => console.error(x)); // reject immediately
 
-Promise.reject("abc").catch((x) => console.error(x));
-
-
+/*
 // Promisifying the Geolocation API
 
 const getPosition = function () {
@@ -273,7 +272,7 @@ PART 2
 TEST DATA: Images in the img folder. Test the error handler by passing a wrong image path. Set the network speed to 'Fast 3G' in the dev tools Network tab, otherwise images load too fast.
 
 GOOD LUCK 😀
-*/
+
 
 const wait = function (seconds) {
   return new Promise(function (resolve) {
@@ -320,3 +319,43 @@ createImage("img/img-1.jpg")
     currentImg.style.display = "none";
   })
   .catch((err) => console.error(err));
+*/
+
+// Consuming Promises with Async/Await
+
+// Async function
+// Will keep running in the background while performing the code that is inside of it
+// When done, will return a promise
+
+// Coutry Data code, is same as this
+// fetch(`https://restcountries.com/v2/name/${country}`).then((res) =>
+//   console.log(res)
+// );
+
+const getPosition = function () {
+  return new Promise(function (resolve, reject) {
+    navigator.geolocation.getCurrentPosition(resolve, reject);
+  });
+};
+
+const whereAmI = async function () {
+  // Geo location
+  const pos = await getPosition();
+  const { latitude: lat, longitude: lng } = pos.coords;
+
+  // Reverse geocoding
+  const resGeo = await fetch(`https://geocode.xyz/${lat},${lng}?geoit=json`);
+  const dataGeo = await resGeo.json();
+  console.log(dataGeo);
+
+  // Country Data
+  const res = await fetch(
+    `https://restcountries.com/v2/name/${dataGeo.country}`
+  );
+  const [data] = await res.json();
+  console.log(data);
+  renderCountry(data);
+};
+
+whereAmI();
+console.log("FIRST");
