@@ -491,4 +491,66 @@ const get3Countries = async function (c1, c2, c3) {
   }
 };
 
-get3Countries("portugal", "canada", "usa");
+// get3Countries("portugal", "canada", "usa");
+
+// Other Promise Combination: race, allSettled and any
+
+// Promise.race
+// Recieves an array of promises and returns a promise
+// Returned promise is settled as soon as one of the input promises settles
+// Settled means a value is available, but it doesnt matter if the promise got rejected or fuffilled
+// The first settled promise wins the race, it short circuits onces a promise if settled
+
+(async function () {
+  const res = await Promise.race([
+    getJSON(`https://restcountries.com/v2/name/italy`),
+    getJSON(`https://restcountries.com/v2/name/egypt`),
+    getJSON(`https://restcountries.com/v2/name/mexico`),
+  ]);
+
+  console.log(res[0]);
+})();
+
+const timeout = function (sec) {
+  return new Promise(function (_, reject) {
+    setTimeout(() => {
+      reject(new Error("Request took too long"));
+    }, sec * 1000);
+  });
+};
+
+Promise.race([
+  getJSON(`https://restcountries.com/v2/name/tanzania`),
+  timeout(0.1),
+])
+  .then((res) => console.log(res[0]))
+  .catch((err) => console.error(err));
+
+// Promise.allSettled
+// Takes in an array of promises, returns an array of all the settled promises
+// Regardless if promise is rejected or resolves
+// Promise.all will short circuit as soon as 1 promise rejects, but Promise.allSettled simply never short circuits
+
+Promise.allSettled([
+  Promise.resolve("Success"),
+  Promise.reject("Error"),
+  Promise.resolve("Another Success"),
+]).then((res) => console.log(res));
+
+Promise.all([
+  Promise.resolve("Success"),
+  Promise.reject("Error"),
+  Promise.resolve("Another Success"),
+])
+  .then((res) => console.log(res))
+  .catch((err) => console.error(err));
+
+// Promise.any()
+// Takes in an array of promises and returns the first fufilled promise
+Promise.any([
+  Promise.resolve("Success"),
+  Promise.reject("Error"),
+  Promise.resolve("Another Success"),
+])
+  .then((res) => console.log(res))
+  .catch((err) => console.error(err));
