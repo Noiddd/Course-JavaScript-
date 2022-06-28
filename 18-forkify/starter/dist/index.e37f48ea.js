@@ -554,6 +554,8 @@ const controlRecipes = async function() {
         const id = window.location.hash.slice(1);
         if (!id) return;
         (0, _recipeViewJsDefault.default).renderSpinner();
+        // 0. Update results view to mark selected search result
+        (0, _resultsViewJsDefault.default).update(_modelJs.getSearchResultsPage());
         // 1. Loading recipe
         await _modelJs.loadRecipe(id);
         // 2. Rendering recipe
@@ -588,7 +590,8 @@ const controlServings = function(newServings) {
     // Update the recipe servings (in state)
     _modelJs.updateServings(newServings);
     // Update the recipe view
-    (0, _recipeViewJsDefault.default).render(_modelJs.state.recipe);
+    // recipeView.render(model.state.recipe);
+    (0, _recipeViewJsDefault.default).update(_modelJs.state.recipe);
 };
 const init = function() {
     (0, _recipeViewJsDefault.default).addHandlerRender(controlRecipes);
@@ -2588,12 +2591,12 @@ class RecipeView extends (0, _viewJsDefault.default) {
             <span class="recipe__info-text">servings</span>
 
             <div class="recipe__info-buttons">
-              <button class="btn--tiny btn--update-servings" data-update-to="${this._data.servings - 1}">
+              <button class="btn--tiny btn--update-servings" data-update-to="${+this._data.servings - 1}">
                 <svg>
                   <use href="${0, _iconsSvgDefault.default}#icon-minus-circle"></use>
                 </svg>
               </button>
-              <button class="btn--tiny btn--update-servings" data-update-to="${this._data.servings + 1}">
+              <button class="btn--tiny btn--update-servings" data-update-to="${+this._data.servings + 1}">
                 <svg>
                   <use href="${0, _iconsSvgDefault.default}#icon-plus-circle"></use>
                 </svg>
@@ -2666,6 +2669,22 @@ class View {
         const markup = this._generateMarkup();
         this._clear();
         this._parentElement.insertAdjacentHTML("afterbegin", markup);
+    }
+    update(data) {
+        this._data = data;
+        const newMarkup = this._generateMarkup();
+        const newDom = document.createRange().createContextualFragment(newMarkup);
+        const newElements = Array.from(newDom.querySelectorAll("*"));
+        const curElements = Array.from(this._parentElement.querySelectorAll("*"));
+        newElements.forEach((newEl, i)=>{
+            const curEl = curElements[i];
+            // Updates changed TEXT
+            if (!newEl.isEqualNode(curEl) && newEl.firstChild?.nodeValue.trim() !== "") curEl.textContent = newEl.textContent;
+            // Update changed ATTRIBUTES
+            if (!newEl.isEqualNode(curEl)) Array.from(newEl.attributes).forEach((attr)=>{
+                curEl.setAttribute(attr.name, attr.value);
+            });
+        });
     }
     _clear() {
         this._parentElement.innerHTML = "";
@@ -3036,16 +3055,17 @@ class ResultsView extends (0, _viewJsDefault.default) {
     _generateMarkup() {
         return this._data.map(this._generateMarkupPreview).join("");
     }
-    _generateMarkupPreview(results) {
+    _generateMarkupPreview(result) {
+        const id = window.location.hash.slice(1);
         return `
         <li class="preview">
-    <a class="preview__link" href="#${results.id}">
+    <a class="preview__link ${result.id === id ? "preview__link--active" : ""}    " href="#${result.id}">
       <figure class="preview__fig">
-        <img src="${results.image}" alt="${results.title}" />
+        <img src="${result.image}" alt="${result.title}" />
       </figure>
       <div class="preview__data">
-        <h4 class="preview__title">${results.title}</h4>
-        <p class="preview__publisher">${results.publisher}</p>
+        <h4 class="preview__title">${result.title}</h4>
+        <p class="preview__publisher">${result.publisher}</p>
       </div>
     </a>
     </li>`;
