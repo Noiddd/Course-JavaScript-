@@ -1,6 +1,4 @@
-"strict mode";
-
-const budget = Object.freeze([
+const budget = [
   { value: 250, description: "Sold old TV 📺", user: "jonas" },
   { value: -45, description: "Groceries 🥑", user: "jonas" },
   { value: 3500, description: "Monthly salary 👩‍💻", user: "jonas" },
@@ -9,76 +7,44 @@ const budget = Object.freeze([
   { value: -20, description: "Candy 🍭", user: "matilda" },
   { value: -125, description: "Toys 🚂", user: "matilda" },
   { value: -1800, description: "New Laptop 💻", user: "jonas" },
-]);
+];
 
-// spendingLimits is immutable with Object.freeze
-// meaning that we cannot add new properties to it
-// it only freezes the first level of the object
-const spendingLimits = Object.freeze({
+const spendingLimits = {
   jonas: 1500,
   matilda: 100,
-});
-
-// this will not work, since the object is freeze
-// spendingLimits.jay = 200;
-// console.log(spendingLimits);
-
-const getLimit = (limits, user) => limits?.[user] ?? 0;
-// const limit = spendingLimits[user] ? spendingLimits[user] : 0;
-
-const addExpense = function (
-  state,
-  limits,
-  value,
-  description,
-  user = "jonas"
-) {
-  const cleanUser = user.toLowerCase();
-
-  return value <= getLimit(limits, cleanUser)
-    ? [...state, { value: -value, description, user: cleanUser }]
-    : state;
 };
 
-const newBudget1 = addExpense(budget, spendingLimits, 10, "Pizza 🍕");
-const newBudget2 = addExpense(
-  newBudget1,
-  spendingLimits,
-  100,
-  "Going to movies 🍿",
-  "Matilda"
-);
-const newBudget3 = addExpense(newBudget2, spendingLimits, 200, "Stuff", "Jay");
+const getLimit = (user) => spendingLimits?.[user] ?? 0;
 
-console.log(newBudget1);
-console.log(newBudget2);
+const addExpense = function (value, description, user = "jonas") {
+  user = user.toLowerCase();
 
-const checkExpenses = (state, limits) =>
-  state.map((entry) =>
-    entry.value < -getLimit(limits, entry.user)
-      ? { ...entry, flag: "limit" }
-      : entry
-  );
+  // const limit = spendingLimits[user] ? spendingLimits[user] : 0;
+  const limit = getLimit(user);
 
-// for (const entry of budget)
-//   if (entry.value < -getLimit(limits, entry.user)) entry.flag = "limit";
+  if (value <= limit) {
+    budget.push({ value: -value, description, user });
+  }
+};
+addExpense(10, "Pizza 🍕");
+addExpense(100, "Going to movies 🍿", "Matilda");
+addExpense(200, "Stuff", "Jay");
 
-const finalBudget = checkExpenses(newBudget3, spendingLimits);
-console.log(finalBudget);
+const checkExpenses = function () {
+  for (const entry of budget)
+    if (entry.value < -getLimit(entry.user)) entry.flag = "limit";
+};
+checkExpenses();
 
-const logBigExpenses = function (state, bigLimit) {
-  const bgiExpenses = state
-    .filter((entry) => entry.value <= -bigLimit)
-    .map((entry) => entry.description.slice(-2))
-    .join(" / ");
+const logBigExpenses = function (bigLimit) {
+  let output = "";
+  for (const entry of budget)
+    output +=
+      entry.value <= -bigLimit ? `${entry.description.slice(-2)} / ` : "";
 
-  console.log(bgiExpenses);
-  // let output = "";
-  // for (const entry of budget)
-  //   output +=
-  //     entry.value <= -bigLimit ? `${entry.description.slice(-2)} / ` : "";
-  // output = output.slice(0, -2); // Remove last '/ '
-  // console.log(output);
+  output = output.slice(0, -2); // Remove last '/ '
+  console.log(output);
 };
 
-logBigExpenses(finalBudget, 500);
+console.log(budget);
+logBigExpenses(500);
